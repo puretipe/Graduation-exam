@@ -80,3 +80,6 @@ YouTubeやニコニコ動画からの動画埋め込みに関してはouTube Dat
 
 ■ 画面遷移図
 (https://www.figma.com/file/KaajbfyHGnlFXnf8AMK7iA/%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA?type=whiteboard&node-id=0-1&t=IhhVGsQ6zHo4NEAO-0)
+
+■ ER図
+(https://gyazo.com/cd437f109df30f12828a8dcb30ced441)
