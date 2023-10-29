@@ -32,6 +32,7 @@ gem "jbuilder"
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 # ここに一般のgemを追加
+gem "webpacker"
 gem "sorcery"
 gem "rails-i18n"
 gem "carrierwave"
@@ -40,7 +41,8 @@ gem "ransack"
 gem "pundit"
 gem "video_info"
 gem "acts_as_votable"
-gem "rails_admin"     
+gem "rails_admin"
+gem 'webpacker'     
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
