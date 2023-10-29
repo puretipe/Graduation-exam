@@ -31,7 +31,16 @@ gem "jbuilder"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
-
+# ここに一般のgemを追加
+gem "sorcery"
+gem "rails-i18n"
+gem "carrierwave"
+gem "kaminari"
+gem "ransack"
+gem "pundit"
+gem "video_info"
+gem "acts_as_votable"
+gem "rails_admin"     
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
@@ -59,10 +68,15 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 
+  gem "letter_opener_web"
 end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+end
+
+group :production do
+  gem 'rails_12factor'
 end
