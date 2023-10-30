@@ -10,11 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_30_082955) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_30_085020) do
+  create_table "focus_points", charset: "latin1", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "genres", charset: "latin1", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "songs", charset: "latin1", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "genre_id", null: false
+    t.bigint "focus_point_id", null: false
+    t.string "embed_url"
+    t.string "title"
+    t.string "artist"
+    t.string "software_name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["focus_point_id"], name: "index_songs_on_focus_point_id"
+    t.index ["genre_id"], name: "index_songs_on_genre_id"
+    t.index ["user_id"], name: "index_songs_on_user_id"
   end
 
   create_table "users", charset: "latin1", force: :cascade do |t|
@@ -27,4 +49,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_30_082955) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "songs", "focus_points"
+  add_foreign_key "songs", "genres"
+  add_foreign_key "songs", "users"
 end

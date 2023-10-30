@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'songs/index'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'home/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -14,4 +15,5 @@ Rails.application.routes.draw do
   
   resources :users, only: [:new, :create]
   resource :user_session, only: [:new, :create, :destroy]
+  resources :songs, only: [:index]
 end
