@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-lg-8 mx-auto">
+      <h1>アカウント登録</h1>
+        <%= form_with model: @user, local: true, class: 'needs-validation' do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
+          <div class="mb-3">
+            <%= f.label :name, "ユーザー名", class: "form-label" %>
+            <%= f.text_field :name, class: "form-control", required: true %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :email, "メールアドレス", class: "form-label" %>
+            <%= f.email_field :email, class: "form-control", required: true %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :password, "パスワード", class: "form-label" %>
+            <%= f.password_field :password, class: "form-control", required: true %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :password_confirmation, "確認用パスワード", class: "form-label" %>
+            <%= f.password_field :password_confirmation, class: "form-control", required: true %>
+          </div>
+
+          <%= f.submit "登録", class: "btn btn-primary" %>
+        <% end %>
+   </div>
+  </div>
+</div>
