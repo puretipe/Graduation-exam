@@ -1,24 +1,24 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <%= link_to "YourAppName", "/", class: "navbar-brand" %>
+        <%= link_to "VOCALOIDSelection", "/", class: "navbar-brand" %>
         <button class='navbar-toggler' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                <%= link_to "楽曲一覧", "#", class: "nav-link" %>
-                </li>
-                <li class="nav-item">
-                <%= link_to "楽曲投稿", "#", class: "nav-link" %>
-                </li>
-                <li class="nav-item">
-                <%= link_to "マイページ", "#", class: "nav-link" %>
-                </li>
-                <li class="nav-item">
-                <%= link_to "ログアウト", "#", class: "nav-link" %>
-                </li>
-            </ul>
+          <ul class="navbar-nav ms-auto main-nav align-items-center">
+            <li class="nav-item">
+            <%= link_to "楽曲一覧", "#", class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+            <%= link_to "楽曲投稿", "#", class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+            <%= link_to "アカウント登録", new_user_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+            <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+            </li>
+          </ul>
         </div>
     </nav>
 </header>
