@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  genre: one
+  focus_point: one
+  embed_url: MyString
+  title: MyString
+  artist: MyString
+  software_name: MyString
+  description: MyText
+
+two:
+  user: two
+  genre: two
+  focus_point: two
+  embed_url: MyString
+  title: MyString
+  artist: MyString
+  software_name: MyString
+  description: MyText
