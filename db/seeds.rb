@@ -7,3 +7,8 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+FocusPoint.create(name: 'メロディー')
+FocusPoint.create(name: '歌詞')
+FocusPoint.create(name: 'ビート')
+FocusPoint.create(name: 'サウンド')
+
