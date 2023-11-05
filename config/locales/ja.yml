@@ -4,6 +4,13 @@ ja:
       user:
         password: "パスワード"
         password_confirmation: "確認用パスワード"
+      song:
+        genre: "ジャンル"
+        focus_point: "こだわりポイント"
+        title: "タイトル"
+        artist: "アーティスト"
+        embed_url: "動画URL"
+        software_name: "使用したソフト名"
     errors:
       messages:
         too_short: "%{count}文字以上で入力してください"
