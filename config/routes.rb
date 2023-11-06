@@ -15,5 +15,5 @@ Rails.application.routes.draw do
   
   resources :users, only: [:new, :create]
   resource :user_session, only: [:new, :create, :destroy]
-  resources :songs, only: [:index, :new, :create]
+  resources :songs, only: [:index, :new, :create, :show]
 end

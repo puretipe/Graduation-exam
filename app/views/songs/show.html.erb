@@ -1,0 +1,19 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+      <div class="card">
+        <div class="card-body">
+          <div class="ratio ratio-16x9 mb-3">
+            <iframe class="embed-responsive-item" src="<%= @song.embed_url %>" allowfullscreen referrerpolicy="no-referrer"></iframe>
+          </div>
+          <h2 class="card-title text-center"><%= @song.title %></h3>
+          <p class="card-text"><strong>アーティスト名:</strong> <%= @song.artist %></p>
+          <p class="card-text"><strong>使用したソフト名:</strong> <%= @song.software_name %></p>
+          <p class="card-text"><strong>ジャンル:</strong> <%= @song.genre.name %></p>
+          <p class="card-text"><strong>こだわりポイント:</strong> <%= @song.focus_point.name %></p>
+          <p class="card-text"><strong>楽曲の概要:</strong> <%= @song.description %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
