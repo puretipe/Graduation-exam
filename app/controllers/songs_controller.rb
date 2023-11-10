@@ -1,4 +1,6 @@
 class SongsController < ApplicationController
+  before_action :require_login, only: [:new, :create]
+
   def index
     @songs = Song.all
   end
