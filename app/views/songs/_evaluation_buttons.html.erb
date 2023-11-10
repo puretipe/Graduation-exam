@@ -1,0 +1,11 @@
+<div id="evaluation_buttons" class="d-flex flex-wrap gap-2">
+  <% Evaluation.evaluation_points.each do |point, value| %>
+    <% evaluation_count = @song.evaluations.where(evaluation_point: value).count %>
+    <% evaluation = @song.evaluations.find_or_initialize_by(user: current_user, evaluation_point: value) %>
+    <% is_evaluated = evaluation.persisted? %>
+    <%= form_with(model: [ @song, evaluation ], local: false, method: (is_evaluated ? :delete : :post)) do |form| %>
+      <%= form.hidden_field :evaluation_point, value: value %>
+      <%= form.submit "#{t("evaluation_points.#{point}")}がすき！ (#{evaluation_count})", class: "btn #{is_evaluated ? 'btn-primary' : 'btn-outline-primary'}" %>
+    <% end %>
+  <% end %>
+</div>

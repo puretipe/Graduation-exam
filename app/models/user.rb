@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :favorites
   has_many :evaluations
   has_many :songs
+  has_many :evaluations, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 255 }
   validates :email, presence: true, uniqueness: true
