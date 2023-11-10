@@ -1,0 +1,9 @@
+<% Evaluation.evaluation_points.each do |point, value| %>
+  <%= turbo_stream.replace "evaluation_count_#{value}" do %>
+    <%= @song.evaluations.where(evaluation_point: value).count %>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.replace "evaluation_buttons" do %>
+  <%= render partial: "songs/evaluation_buttons", locals: { song: @song, current_user: current_user } %>
+<% end %>

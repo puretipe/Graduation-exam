@@ -15,3 +15,10 @@ ja:
       messages:
         too_short: "%{count}文字以上で入力してください"
         confirmation: "と%{attribute}の入力が一致しません"
+  evaluation_points:
+    melody: "メロディ"
+    lyrics: "歌詞"
+    chord: "コード"
+    beat: "ビート"
+    sound: "サウンド"
+    atmosphere: "雰囲気"
