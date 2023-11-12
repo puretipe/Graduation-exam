@@ -41,8 +41,7 @@ gem "ransack"
 gem "pundit"
 gem "video_info"
 gem "acts_as_votable"
-gem "rails_admin"
-gem 'webpacker'     
+gem "rails_admin"  
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 

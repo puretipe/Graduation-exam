@@ -23,6 +23,7 @@ services:
     environment:
       TZ: Asia/Tokyo
       SELENIUM_DRIVER_URL: http://chrome:4444/wd/hub
+      SECRET_KEY_BASE: 5867b2acabfa8abe1120f482a8e7720a72e937be3e9325d35d24672c4b164535bc559bddbfacd51961ee5d6eb2c39cfb725eb2f38f5352d334f308a8b18d3ef9
     ports:
       - "3000:3000"
     depends_on:
