@@ -10,8 +10,8 @@ import "@hotwired/turbo-rails"
 
 // Bootstrap imports
 import '@popperjs/core'
+import "../stylesheets/application"
 import 'bootstrap/dist/js/bootstrap'
-import 'bootstrap/dist/css/bootstrap'
 import '../video_preview';
 
 // Uncomment to copy all static images under ../images to the output folder and reference
