@@ -135,6 +135,7 @@ GEM
     globalid (1.2.1)
       activesupport (>= 6.1)
     google-protobuf (3.25.0-aarch64-linux)
+    google-protobuf (3.25.0-x86_64-linux)
     hashie (5.0.0)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
@@ -202,6 +203,8 @@ GEM
     net_http_timeout_errors (1.0.0)
     nio4r (2.5.9)
     nokogiri (1.15.4-aarch64-linux)
+      racc (~> 1.4)
+    nokogiri (1.15.4-x86_64-linux)
       racc (~> 1.4)
     oauth (1.1.0)
       oauth-tty (~> 1.0, >= 1.0.1)
@@ -293,6 +296,8 @@ GEM
     rubyzip (2.3.2)
     sass-embedded (1.69.5-aarch64-linux-gnu)
       google-protobuf (~> 3.23)
+    sass-embedded (1.69.5-x86_64-linux-gnu)
+      google-protobuf (~> 3.23)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -355,6 +360,7 @@ GEM
 
 PLATFORMS
   aarch64-linux
+  x86_64-linux
 
 DEPENDENCIES
   acts_as_votable
