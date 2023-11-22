@@ -1,0 +1,12 @@
+<%= search_form_for @q, url: songs_path, method: :get, class: "form-inline" do |f| %>
+  <%= f.label :title_or_artist_or_software_name_or_genre_name_cont, "検索:" %>
+  <%= f.search_field :title_or_artist_or_software_name_or_genre_name_cont, placeholder: "タイトル、アーティスト、ソフト名、ジャンル", class: "form-control mr-sm-2" %>
+
+  <%= f.label :focus_point_name_eq, "こだわりポイント別に検索:" %>
+  <%= f.collection_select :focus_point_name_eq, FocusPoint.all, :name, :name, include_blank: "選択しない", class: "form-control" %>
+
+  <%= f.label :s, "評価ポイントの多い順に検索:" %>
+  <%= f.select :s, options_for_select(evaluation_type_options, params[:q] ? params[:q][:s] : nil), include_blank: '選択しない' %>
+
+  <%= f.submit "検索", class: "btn btn-secondary my-2 my-sm-0" %>
+<% end %>

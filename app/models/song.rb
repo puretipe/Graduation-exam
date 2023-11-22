@@ -13,6 +13,24 @@ class Song < ApplicationRecord
   validates :embed_url, presence: true, length: { maximum: 255 }
   validates :software_name, presence: true, length: { maximum: 255 }
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[title artist software_name genre_id]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[evaluations focus_point genre user]
+  end
+
+  scope :sorted_by_evaluations, -> (evaluation_type, order) {
+    subquery = Evaluation.where(evaluation_point: Evaluation.evaluation_points[evaluation_type.to_sym])
+                         .select('song_id, COUNT(id) as evaluations_count')
+                         .group('song_id')
+  
+    joins("INNER JOIN (#{subquery.to_sql}) as evals ON evals.song_id = songs.id")
+      .select('songs.*, evals.evaluations_count')
+      .order(Arel.sql("evals.evaluations_count #{order.upcase}"))
+  }
+
   private
 
   def valid_embed_url

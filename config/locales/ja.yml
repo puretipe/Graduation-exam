@@ -1,6 +1,14 @@
 ja:
   activerecord:
     attributes:
+      evaluation:
+        evaluation_points:
+          melody: 'メロディー'
+          lyrics: '歌詞'
+          chord: 'コード'
+          beat: 'ビート'
+          sound: 'サウンド'
+          atmosphere: '雰囲気'
       user:
         password: "パスワード"
         password_confirmation: "確認用パスワード"
