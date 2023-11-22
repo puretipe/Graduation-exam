@@ -2,7 +2,15 @@ class SongsController < ApplicationController
   before_action :require_login, only: [:new, :create]
 
   def index
-    @songs = Song.all
+    @q = Song.ransack(params[:q])
+    @songs = @q.result.includes(:genre, :focus_point, :evaluations)
+    if params[:q] && params[:q][:s]
+      sort_param = params[:q][:s]
+      if sort_param.include?("_evaluations_count")
+        evaluation_type, order = sort_param.split('_evaluations_count ').first, 'desc'
+        @songs = @songs.sorted_by_evaluations(evaluation_type, order)
+      end
+    end
   end
 
   def new
