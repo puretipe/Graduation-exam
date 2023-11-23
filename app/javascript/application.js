@@ -1,8 +1,8 @@
+import $ from 'jquery';
+window.jQuery = $;
+window.$ = $;
 import "@hotwired/turbo-rails"
 import "bootstrap"
-import $ from 'jquery'
-window.jQuery = $
-window.$ = $
 import 'jquery-ui/ui/widgets/autocomplete'
 import './video_preview'
 
