@@ -1,1 +1,21 @@
 @import "application.bootstrap";
+
+.ui-autocomplete {
+  z-index: 1050; // Bootstrapのモーダルなどの上に表示
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  background-color: white;
+  padding: 0;
+  list-style-type: none; // リストスタイルをリセット
+}
+
+/* オートコンプリート項目のスタイル */
+.ui-menu-item {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.ui-menu-item:hover {
+  background-color: #f8f8f8;
+}
