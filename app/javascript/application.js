@@ -1,9 +1,9 @@
 import $ from 'jquery';
-window.jQuery = $;
 window.$ = $;
+window.jQuery = $;
+import 'jquery-ui/ui/widgets/autocomplete'
 import "@hotwired/turbo-rails"
 import "bootstrap"
-import 'jquery-ui/ui/widgets/autocomplete'
 import './video_preview'
 
 document.addEventListener('turbo:load', () => {
