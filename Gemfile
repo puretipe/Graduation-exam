@@ -33,6 +33,7 @@ gem "sorcery"
 gem "rails-i18n"
 gem "carrierwave"
 gem "kaminari"
+gem 'bootstrap5-kaminari-views'
 gem "ransack"
 gem "pundit"
 gem "video_info"
