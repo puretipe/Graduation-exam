@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   resources :songs, only: [:index, :new, :create, :show] do
     resources :evaluations, only: [:create, :update, :destroy]
   end
+
+  get 'autocompletes/songs', to: 'autocompletes#autocomplete'
 end

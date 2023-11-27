@@ -6184,14 +6184,14 @@
   var isRTL = () => document.documentElement.dir === "rtl";
   var defineJQueryPlugin = (plugin) => {
     onDOMContentLoaded(() => {
-      const $ = getjQuery();
-      if ($) {
+      const $2 = getjQuery();
+      if ($2) {
         const name = plugin.NAME;
-        const JQUERY_NO_CONFLICT = $.fn[name];
-        $.fn[name] = plugin.jQueryInterface;
-        $.fn[name].Constructor = plugin;
-        $.fn[name].noConflict = () => {
-          $.fn[name] = JQUERY_NO_CONFLICT;
+        const JQUERY_NO_CONFLICT = $2.fn[name];
+        $2.fn[name] = plugin.jQueryInterface;
+        $2.fn[name].Constructor = plugin;
+        $2.fn[name].noConflict = () => {
+          $2.fn[name] = JQUERY_NO_CONFLICT;
           return plugin.jQueryInterface;
         };
       }
@@ -6390,16 +6390,16 @@
       if (typeof event !== "string" || !element) {
         return null;
       }
-      const $ = getjQuery();
+      const $2 = getjQuery();
       const typeEvent = getTypeEvent(event);
       const inNamespace = event !== typeEvent;
       let jQueryEvent = null;
       let bubbles = true;
       let nativeDispatch = true;
       let defaultPrevented = false;
-      if (inNamespace && $) {
-        jQueryEvent = $.Event(event, args);
-        $(element).trigger(jQueryEvent);
+      if (inNamespace && $2) {
+        jQueryEvent = $2.Event(event, args);
+        $2(element).trigger(jQueryEvent);
         bubbles = !jQueryEvent.isPropagationStopped();
         nativeDispatch = !jQueryEvent.isImmediatePropagationStopped();
         defaultPrevented = jQueryEvent.isDefaultPrevented();
@@ -9683,6 +9683,17 @@
     }
   }
   window.updateVideoPreview = updateVideoPreview;
+
+  // app/javascript/application.js
+  document.addEventListener("turbo:load", () => {
+    $("#search-field-id").autocomplete({
+      source: "/autocompletes/songs",
+      minLength: 2,
+      select: function(event, ui) {
+        console.log("Selected: " + ui.item.label);
+      }
+    });
+  });
 })();
 /*! Bundled license information:
 
