@@ -25,12 +25,18 @@ class SongsController < ApplicationController
     elsif @song.embed_url.include?('nicovideo.jp')
       @song.thumbnail_url = NiconicoService.get_thumbnail_url(@song.embed_url)
     end
-    if @song.save
-      flash[:success] = '登録が完了しました'
-      redirect_to songs_path
-    else
+    begin
+      if @song.save
+        flash[:success] = '投稿が完了しました'
+        redirect_to songs_path
+      else
+        @focus_points = FocusPoint.all
+        render :new
+      end
+    rescue ActiveRecord::RecordNotUnique
+      flash.now[:danger] = '一つの動画は一回しか投稿できません。'
       @focus_points = FocusPoint.all
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

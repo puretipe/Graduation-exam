@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_06_093701) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_29_082040) do
   create_table "evaluations", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "song_id", null: false
@@ -45,6 +45,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_06_093701) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "thumbnail_url"
+    t.index ["embed_url"], name: "index_songs_on_embed_url", unique: true
     t.index ["focus_point_id"], name: "index_songs_on_focus_point_id"
     t.index ["genre_id"], name: "index_songs_on_genre_id"
     t.index ["user_id"], name: "index_songs_on_user_id"
