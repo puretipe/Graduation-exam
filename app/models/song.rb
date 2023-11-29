@@ -8,10 +8,14 @@ class Song < ApplicationRecord
   before_validation :set_genre, on: :create
   before_save :convert_to_embed_url
   validate :valid_embed_url
+  validate :validate_video
   validates :title, presence: true, length: { maximum: 255 }
   validates :artist, presence: true, length: { maximum: 255 }
-  validates :embed_url, presence: true, length: { maximum: 255 }
+  validates :embed_url, presence: true, length: { maximum: 255 }, uniqueness: true
   validates :software_name, presence: true, length: { maximum: 255 }
+
+  SYNTHESIZER_KEYWORDS = ["初音ミク", "VOCALOID", "可不", "CeVIO", "Synthesizer", "UTAU", "VOICEBOX", "flower", "巡音ルカ", "鏡音",
+                          "ボーカロイド", "ずんだもん"]
 
   def self.ransackable_attributes(auth_object = nil)
     %w[title artist software_name genre_id]
@@ -56,5 +60,31 @@ class Song < ApplicationRecord
     return if genre_name.blank?
     genre = Genre.find_or_create_by(name: genre_name)
     self.genre_id = genre.id
+  end
+
+  def validate_video
+    video_info = get_video_info
+    return if video_info && video_uses_synthesized_music?(video_info)
+
+    errors.add(:embed_url, "に入力した楽曲は音声合成ソフトウェアを使用している必要があります。動画のタイトル、概要欄、タグ等に音声合成ソフト関連のワードが含まれているか確認して下さい。")
+  end
+
+  def get_video_info
+    if embed_url.include?("youtube.com")
+      YoutubeService.get_video_info(embed_url)
+    elsif embed_url.include?("nicovideo.jp")
+      NiconicoService.get_video_info(embed_url)
+    end
+  end
+
+  def video_uses_synthesized_music?(video_info)
+    title = video_info[:title].downcase
+    description = video_info[:description].downcase
+    tags = video_info[:tags] ? video_info[:tags].map(&:downcase) : []
+  
+    SYNTHESIZER_KEYWORDS.any? do |keyword|
+      keyword = keyword.downcase
+      title.include?(keyword) || description.include?(keyword) || tags.include?(keyword)
+    end
   end
 end
