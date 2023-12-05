@@ -1,0 +1,39 @@
+.home-page-background {
+  background: url('/assets/puretipe_Hatsune_Miku_best_quality_2020s_pixiv_illustration_viv_0fa5bf82-ba84-4a49-9fb3-13aa9029acb9.png') center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem;
+}
+
+.overlay h1 {
+  color: rgb(159, 242, 246);
+  font-family: 'Ephesis', cursive;
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.buttons {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%; 
+}
+
+.buttons .btn {
+  font-weight: bold;
+  color: #000;
+  margin: 0.5rem;
+}

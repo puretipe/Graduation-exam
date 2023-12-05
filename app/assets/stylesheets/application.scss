@@ -1,4 +1,5 @@
 @import "application.bootstrap";
+@import "home";
 
 .ui-autocomplete {
   z-index: 1050; // Bootstrapのモーダルなどの上に表示
@@ -20,8 +21,3 @@
   background-color: #f8f8f8;
 }
 
-.home-page-background {
-  background: url('/assets/puretipe_Hatsune_Miku_best_quality_2020s_pixiv_illustration_viv_0fa5bf82-ba84-4a49-9fb3-13aa9029acb9.png');
-  background-size: cover;
-  height: 100vh;
-}

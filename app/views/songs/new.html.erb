@@ -1,6 +1,8 @@
-<h1>楽曲の投稿</h1>
+<div class="text-center mb-5">
+  <h1>楽曲の投稿</h1>
+</div>
 
-<%= form_with model: @song, local: true, data: { turbo: "false" }, class: 'mt-4' do |f| %>
+<%= form_with model: @song, local: true, data: { turbo: "false" }, class: 'form-inline mx-5' do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="mb-3">
     <%= f.label :embed_url, "動画URL(YouTubeもしくはニコニコ動画)", class: 'form-label' %>
