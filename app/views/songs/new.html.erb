@@ -40,8 +40,9 @@
 
   <div class="mb-3">
     <%= f.label :description, "楽曲概要", class: 'form-label' %>
-    <%= f.text_field :description, class: 'form-control' %>
+    <%= f.text_area :description, rows: 5, class: 'form-control' %>
   </div>
+
 
   <div class="actions">
     <%= f.submit "投稿する", class: 'btn btn-primary' %>
