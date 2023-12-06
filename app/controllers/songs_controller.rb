@@ -3,7 +3,7 @@ class SongsController < ApplicationController
 
   def index
     @q = Song.ransack(params[:q])
-    @songs = @q.result.includes(:genre, :focus_point, :evaluations).page(params[:page])
+    @songs = @q.result.includes(:genre, :focus_point, :evaluations).order(created_at: :desc).page(params[:page])
     if params[:q] && params[:q][:s]
       sort_param = params[:q][:s]
       if sort_param.include?("_evaluations_count")

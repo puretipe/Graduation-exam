@@ -1,6 +1,22 @@
-<h1>楽曲の投稿</h1>
+<div class="text-center mb-5">
+  <h1>楽曲の投稿</h1>
 
-<%= form_with model: @song, local: true, data: { turbo: "false" }, class: 'mt-4' do |f| %>
+  <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNotice" aria-expanded="false" aria-controls="collapseNotice">
+    投稿時の注意事項(必ずお読み下さい。)
+  </button>
+
+  <div class="collapse" id="collapseNotice">
+    <div class="card card-body form-inline mx-5">
+      本サービスは、音声合成ソフトウェアを使用して作成された楽曲専用の動画プラットフォームとなっております。
+      投稿される楽曲は、VOCALOID、UTAU、CeVIO、Synthesizer V、VOICEVOX、VOICELOID等の
+      音声合成ソフトが使用されたものであるかご確認の上、投稿して下さい。
+      また、投稿できるのはYouTubeかニコニコ動画に投稿されている動画限定となります。動画視聴ページのURLをフォームにご記入ください。
+      加えて、元動画のタイトル、概要欄、タグ等に音声合成ソフトに関するワードが含まれているかご確認ください。動画投稿ができない場合があります。
+    </div>
+  </div>
+</div>
+
+<%= form_with model: @song, local: true, data: { turbo: "false" }, class: 'form-inline mx-5' do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="mb-3">
     <%= f.label :embed_url, "動画URL(YouTubeもしくはニコニコ動画)", class: 'form-label' %>
@@ -38,8 +54,9 @@
 
   <div class="mb-3">
     <%= f.label :description, "楽曲概要", class: 'form-label' %>
-    <%= f.text_field :description, class: 'form-control' %>
+    <%= f.text_area :description, rows: 5, class: 'form-control' %>
   </div>
+
 
   <div class="actions">
     <%= f.submit "投稿する", class: 'btn btn-primary' %>
