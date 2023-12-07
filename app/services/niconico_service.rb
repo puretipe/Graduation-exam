@@ -1,4 +1,6 @@
 class NiconicoService
+  require 'rexml/document'
+
   def self.get_thumbnail_url(embed_url)
     video_id = extract_video_id(embed_url)
     return nil if video_id.blank?
