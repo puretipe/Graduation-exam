@@ -1,0 +1,19 @@
+<h1>マイページ</h1>
+
+<% if @profile.profile_image_url.present? %>
+  <img src="<%= @profile.profile_image_url %>" alt="Profile Image" style="max-width: 200px;">
+<% else %>
+  <p>プロフィール画像は設定されていません</p>
+<% end %>
+
+<p>
+  <strong>ユーザー名:</strong>
+  <%= current_user.name %>
+</p>
+
+<p>
+  <strong>メールアドレス:</strong>
+  <%= current_user.email %>
+</p>
+
+<%= link_to 'Edit Profile', edit_profile_path(@profile) %>
