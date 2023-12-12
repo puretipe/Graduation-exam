@@ -6,13 +6,16 @@ class ProfilesController < ApplicationController
   def edit; end
 
   def update
-    if @profile.update(profile_params)
-      flash[:success] = 'プロフィールを更新しました'
-      redirect_to profile_path
-    else
-      flash.now['danger'] = 'プロフィールが更新できませんでした'
-      render :edit, status: :unprocessable_entity
+    ActiveRecord::Base.transaction do
+      @profile.update!(profile_params)
+      @profile.user.update!(user_params)
     end
+  
+    flash[:success] = 'プロフィールを更新しました'
+    redirect_to profile_path
+  rescue ActiveRecord::RecordInvalid
+    flash.now['danger'] = 'プロフィールが更新できませんでした'
+    render :edit, status: :unprocessable_entity
   end
 
   private
@@ -23,5 +26,9 @@ class ProfilesController < ApplicationController
 
   def profile_params
     params.require(:profile).permit(:profile_image_url)
+  end
+
+  def user_params
+    params.require(:profile).permit(:name, :email)
   end
 end
