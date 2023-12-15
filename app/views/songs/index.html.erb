@@ -1,6 +1,6 @@
 <div class="list-group mb-3">
   <div class="text-center">
-    <%= render 'search_form', q: @q %>
+    <%= render 'songs/search_form', q: @q, search_url: songs_path %>
   </div>
   <table class="table table-striped">
     <thead>
