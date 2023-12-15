@@ -16,7 +16,11 @@ Rails.application.routes.draw do
   resource :user_session, only: [:new, :create, :destroy]
   resources :songs, only: [:index, :new, :create, :show] do
     resources :evaluations, only: [:create, :update, :destroy]
+    collection do
+      get 'my_songs'
+    end
   end
+  resources :profiles, only: [:show, :edit, :update]
 
   get 'autocompletes/songs', to: 'autocompletes#autocomplete'
 end

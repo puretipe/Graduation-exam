@@ -44,6 +44,9 @@ class SongsController < ApplicationController
     @song = Song.find(params[:id])
   end
 
+  def my_songs
+    @songs = Song.where(user_id: current_user.id).page(params[:page])
+  end
 
   private
 

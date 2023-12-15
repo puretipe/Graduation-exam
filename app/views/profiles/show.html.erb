@@ -1,0 +1,29 @@
+<div class="container mt-4 text-center">
+  <h1 class="mb-4">マイページ</h1>
+
+  <div class="row justify-content-center">
+    <div class="col-12 mb-3">
+      <% if @profile.profile_image_url.present? %>
+        <img src="<%= @profile.profile_image_url %>" alt="Profile Image" class="img-fluid rounded-circle" style="max-width: 200px; height: 200px; object-fit: cover;">
+      <% else %>
+        <p>プロフィール画像は設定されていません</p>
+      <% end %>
+    </div>
+
+    <div class="col-12">
+      <div class="mb-3">
+        <strong>ユーザー名:</strong>
+        <p><%= current_user.name %></p>
+      </div>
+
+      <div class="mb-3">
+        <strong>メールアドレス:</strong>
+        <p><%= current_user.email %></p>
+      </div>
+
+      <%= link_to 'プロフィール編集', edit_profile_path(@profile), class: "btn btn-primary" %>
+
+      <%= link_to '投稿した楽曲一覧・編集', my_songs_songs_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+</div>

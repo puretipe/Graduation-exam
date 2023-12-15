@@ -12,6 +12,8 @@ ja:
       user:
         password: "パスワード"
         password_confirmation: "確認用パスワード"
+        name: "名前"
+        email: "メールアドレス"
       song:
         genre: "ジャンル"
         focus_point: "こだわりポイント"

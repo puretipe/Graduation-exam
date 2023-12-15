@@ -1,0 +1,43 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <%= form_for @profile, html: { multipart: true, class: 'needs-validation', novalidate: true } do |f| %>
+        <% if @profile.errors.any? || @profile.user.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger">
+            <ul class="mb-0">
+              <% @profile.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              <% @profile.user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="mb-3">
+          <%= f.label :profile_image_url, "プロフィール画像", class: 'form-label' %>
+          <%= f.file_field :profile_image_url, class: 'form-control', id: 'profile_image', onchange: 'previewImage()' %>
+        </div>
+
+        <div class="mb-3">
+          <img id="preview" src="#" alt="プロフィール画像プレビュー" class="img-fluid" style="max-width: 100%; height: auto; display: none;">
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :name, "ユーザー名", class: 'form-label' %>
+          <%= f.text_field :name, value: @profile.user.name, class: 'form-control' %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :email, "メールアドレス", class: 'form-label' %>
+          <%= f.email_field :email, value: @profile.user.email, class: 'form-control' %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
