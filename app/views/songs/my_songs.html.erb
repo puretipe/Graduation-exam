@@ -5,30 +5,7 @@
     <%= render 'songs/search_form', q: @q, search_url: my_songs_songs_path %>
   </div>
 
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">サムネイル</th>
-        <th scope="col">タイトル</th>
-        <th scope="col">アーティスト</th>
-        <th scope="col">使用したソフト名</th>
-        <th scope="col">ジャンル</th>
-        <th scope="col">こだわりポイント</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @songs.each do |song| %>
-        <tr>
-          <td><%= link_to (image_tag(song.thumbnail_url, width: 150, height: 100) if song.thumbnail_url.present?), song_path(song) %></td>
-          <td><%= link_to song.title, song_path(song) %></td>
-          <td><%= song.artist %></td>
-          <td><%= song.software_name %></td>
-          <td><%= song.genre&.name %></td>
-          <td><%= song.focus_point&.name %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <%= render 'songs/songs_table', songs: @songs %>
 
   <% if @songs.empty? %>
     <p class="text-center">投稿された楽曲はありません。</p>
