@@ -62,21 +62,21 @@ class SongsController < ApplicationController
     else
       @focus_points = FocusPoint.all
       @genres = Genre.all
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def my_songs
     @q = current_user.songs.ransack(params[:q])
-    @songs = @q.result.includes(:genre, :focus_point, :evaluations).order(created_at: :desc).page(params[:page])
-
-    if params[:q] && params[:q][:s]
+    @songs = @q.result.includes(:genre, :focus_point, :evaluations)
+    if params[:q] && params[:q][:s] && params[:q][:s].include?("_evaluations_count")
       sort_param = params[:q][:s]
-      if sort_param.include?("_evaluations_count")
-        evaluation_type, order = sort_param.split('_evaluations_count ').first, 'desc'
-        @songs = @songs.sorted_by_evaluations(evaluation_type, order)
-      end
+      evaluation_type, order = sort_param.split(' ').first.split('_evaluations_count').first, sort_param.split.last
+      @songs = @songs.sorted_by_evaluations(evaluation_type, order)
+    else
+      @songs = @songs.order(created_at: :desc)
     end
+    @songs = @songs.page(params[:page])
   end
 
   private
