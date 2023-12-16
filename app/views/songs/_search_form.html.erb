@@ -1,4 +1,4 @@
-<%= search_form_for @q, url: songs_path, method: :get, class: "form-inline mx-5" do |f| %>
+<%= search_form_for @q, url: search_url, method: :get, class: "form-inline mx-5" do |f| %>
   <%= f.label :title_or_artist_or_software_name_or_genre_name_cont, "検索:" %>
   <%= f.search_field :title_or_artist_or_software_name_or_genre_name_cont, id: "search-field-id", placeholder: "タイトル、アーティスト、ソフト名、ジャンル", class: "form-control mr-sm-2" %>
 

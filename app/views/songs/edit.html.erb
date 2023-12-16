@@ -1,0 +1,46 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+      <div class="ratio ratio-16x9 mb-3">
+        <iframe class="embed-responsive-item" src="<%= @song.embed_url %>" allowfullscreen referrerpolicy="no-referrer"></iframe>
+      </div>
+      <%= form_with(model: @song, local: true) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <div class="mb-3">
+          <%= f.label :title, "タイトル" %>
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :artist, "アーティスト", class: 'form-label' %>
+          <%= f.text_field :artist, class: 'form-control' %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :software_name, "楽曲に使用した音声合成ソフト名", class: 'form-label' %>
+          <%= f.text_field :software_name, class: 'form-control' %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :genre_name, "ジャンル", class: 'form-label' %>
+          <%= f.text_field :genre_name, class: 'form-control' %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :focus_point_id, "こだわりポイント", class: 'form-label' %>
+          <%= f.collection_select :focus_point_id, @focus_points, :id, :name, prompt: '選択してください', class: 'form-select' %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :description, "楽曲概要", class: 'form-label' %>
+          <%= f.text_area :description, rows: 5, class: 'form-control' %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "更新する", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

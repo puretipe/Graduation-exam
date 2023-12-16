@@ -1,16 +1,17 @@
 class SongsController < ApplicationController
-  before_action :require_login, only: [:new, :create]
+  before_action :require_login, only: [:new, :create, :my_songs, :edit, :update]
 
   def index
     @q = Song.ransack(params[:q])
-    @songs = @q.result.includes(:genre, :focus_point, :evaluations).order(created_at: :desc).page(params[:page])
-    if params[:q] && params[:q][:s]
+    @songs = @q.result.includes(:genre, :focus_point, :evaluations)
+    if params[:q] && params[:q][:s] && params[:q][:s].include?("_evaluations_count")
       sort_param = params[:q][:s]
-      if sort_param.include?("_evaluations_count")
-        evaluation_type, order = sort_param.split('_evaluations_count ').first, 'desc'
-        @songs = @songs.sorted_by_evaluations(evaluation_type, order)
-      end
+      evaluation_type, order = sort_param.split(' ').first.split('_evaluations_count').first, sort_param.split.last
+      @songs = @songs.sorted_by_evaluations(evaluation_type, order)
+    else
+      @songs = @songs.order(created_at: :desc)
     end
+    @songs = @songs.page(params[:page])
   end
 
   def new
@@ -44,8 +45,38 @@ class SongsController < ApplicationController
     @song = Song.find(params[:id])
   end
 
+  def edit
+    @song = Song.find(params[:id])
+    @song.genre_name = @song.genre.name if @song.genre
+    @focus_points = FocusPoint.all
+    @genres = Genre.all
+  end
+
+  def update
+    @song = Song.find(params[:id])
+    @song.genre_name = song_params[:genre_name]
+  
+    if @song.update(song_params)
+      flash[:success] = "楽曲情報を更新しました。"
+      redirect_to song_path(@song)
+    else
+      @focus_points = FocusPoint.all
+      @genres = Genre.all
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   def my_songs
-    @songs = Song.where(user_id: current_user.id).page(params[:page])
+    @q = current_user.songs.ransack(params[:q])
+    @songs = @q.result.includes(:genre, :focus_point, :evaluations)
+    if params[:q] && params[:q][:s] && params[:q][:s].include?("_evaluations_count")
+      sort_param = params[:q][:s]
+      evaluation_type, order = sort_param.split(' ').first.split('_evaluations_count').first, sort_param.split.last
+      @songs = @songs.sorted_by_evaluations(evaluation_type, order)
+    else
+      @songs = @songs.order(created_at: :desc)
+    end
+    @songs = @songs.page(params[:page])
   end
 
   private

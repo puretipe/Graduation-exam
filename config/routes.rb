@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   
   resources :users, only: [:new, :create]
   resource :user_session, only: [:new, :create, :destroy]
-  resources :songs, only: [:index, :new, :create, :show] do
+  resources :songs do
     resources :evaluations, only: [:create, :update, :destroy]
     collection do
       get 'my_songs'

@@ -5,7 +5,7 @@ class Song < ApplicationRecord
   has_many :evaluations, dependent: :destroy
   attr_accessor :genre_name
 
-  before_validation :set_genre, on: :create
+  before_validation :set_genre, on: [:create, :update]
   before_save :convert_to_embed_url
   validate :valid_embed_url
   validate :validate_video
