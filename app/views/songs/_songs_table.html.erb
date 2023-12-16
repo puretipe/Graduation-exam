@@ -19,6 +19,11 @@
         <td><%= song.genre&.name %></td>
         <td><%= song.focus_point&.name %></td>
       </tr>
+      <td> 
+        <% if current_user == song.user %>
+          <%= link_to "編集", edit_song_path(song), class: "btn btn-outline-secondary" %>
+        <% end %>
+      </td>
     <% end %>
   </tbody>
 </table>

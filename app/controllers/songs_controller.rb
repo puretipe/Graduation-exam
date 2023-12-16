@@ -1,5 +1,5 @@
 class SongsController < ApplicationController
-  before_action :require_login, only: [:new, :create]
+  before_action :require_login, only: [:new, :create, :my_songs, :edit, :update]
 
   def index
     @q = Song.ransack(params[:q])
@@ -42,6 +42,27 @@ class SongsController < ApplicationController
 
   def show
     @song = Song.find(params[:id])
+  end
+
+  def edit
+    @song = Song.find(params[:id])
+    @song.genre_name = @song.genre.name if @song.genre
+    @focus_points = FocusPoint.all
+    @genres = Genre.all
+  end
+
+  def update
+    @song = Song.find(params[:id])
+    @song.genre_name = song_params[:genre_name]
+  
+    if @song.update(song_params)
+      flash[:success] = "楽曲情報を更新しました。"
+      redirect_to song_path(@song)
+    else
+      @focus_points = FocusPoint.all
+      @genres = Genre.all
+      render :edit
+    end
   end
 
   def my_songs
