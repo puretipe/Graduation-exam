@@ -1,5 +1,5 @@
 class SongsController < ApplicationController
-  before_action :require_login, only: [:new, :create, :my_songs, :edit, :update]
+  before_action :require_login, only: [:new, :create, :my_songs, :edit, :update, :destroy]
 
   def index
     @q = Song.ransack(params[:q])
@@ -63,6 +63,18 @@ class SongsController < ApplicationController
       @focus_points = FocusPoint.all
       @genres = Genre.all
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @song = Song.find(params[:id])
+    if @song.user == current_user
+      @song.destroy
+      flash[:success] = "楽曲が削除されました。"
+      redirect_to songs_path
+    else
+      flash[:danger] = "楽曲の削除に失敗しました。"
+      redirect_to song_path(@song), status: :unprocessable_entity
     end
   end
 

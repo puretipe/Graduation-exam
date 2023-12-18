@@ -859,9 +859,9 @@
       return element;
     } else {
       const createdScriptElement = document.createElement("script");
-      const cspNonce = getMetaContent("csp-nonce");
-      if (cspNonce) {
-        createdScriptElement.nonce = cspNonce;
+      const cspNonce2 = getMetaContent("csp-nonce");
+      if (cspNonce2) {
+        createdScriptElement.nonce = cspNonce2;
       }
       createdScriptElement.textContent = element.textContent;
       createdScriptElement.async = false;
@@ -1030,11 +1030,11 @@
     }
   }
   var FetchRequest = class {
-    constructor(delegate, method, location2, body = new URLSearchParams(), target = null) {
+    constructor(delegate2, method, location2, body = new URLSearchParams(), target = null) {
       this.abortController = new AbortController();
       this.resolveRequestPromise = (_value) => {
       };
-      this.delegate = delegate;
+      this.delegate = delegate2;
       this.method = method;
       this.headers = this.defaultHeaders;
       this.body = body;
@@ -1138,7 +1138,7 @@
     }
   };
   var AppearanceObserver = class {
-    constructor(delegate, element) {
+    constructor(delegate2, element) {
       this.started = false;
       this.intersect = (entries) => {
         const lastEntry = entries.slice(-1)[0];
@@ -1146,7 +1146,7 @@
           this.delegate.elementAppearedInViewport(this.element);
         }
       };
-      this.delegate = delegate;
+      this.delegate = delegate2;
       this.element = element;
       this.intersectionObserver = new IntersectionObserver(this.intersect);
     }
@@ -1215,9 +1215,9 @@
     static confirmMethod(message, _element, _submitter) {
       return Promise.resolve(confirm(message));
     }
-    constructor(delegate, formElement, submitter, mustRedirect = false) {
+    constructor(delegate2, formElement, submitter, mustRedirect = false) {
       this.state = FormSubmissionState.initialized;
-      this.delegate = delegate;
+      this.delegate = delegate2;
       this.formElement = formElement;
       this.submitter = submitter;
       this.formData = buildFormData(formElement, submitter);
@@ -1458,7 +1458,7 @@
     return node.querySelectorAll("[id][data-turbo-permanent]");
   }
   var FormSubmitObserver = class {
-    constructor(delegate, eventTarget) {
+    constructor(delegate2, eventTarget) {
       this.started = false;
       this.submitCaptured = () => {
         this.eventTarget.removeEventListener("submit", this.submitBubbled, false);
@@ -1475,7 +1475,7 @@
           }
         }
       };
-      this.delegate = delegate;
+      this.delegate = delegate2;
       this.eventTarget = eventTarget;
     }
     start() {
@@ -1508,12 +1508,12 @@
     }
   }
   var View = class {
-    constructor(delegate, element) {
+    constructor(delegate2, element) {
       this.resolveRenderPromise = (_value) => {
       };
       this.resolveInterceptionPromise = (_value) => {
       };
-      this.delegate = delegate;
+      this.delegate = delegate2;
       this.element = element;
     }
     scrollToAnchor(anchor) {
@@ -1606,7 +1606,7 @@
     }
   };
   var LinkInterceptor = class {
-    constructor(delegate, element) {
+    constructor(delegate2, element) {
       this.clickBubbled = (event) => {
         if (this.respondsToEventTarget(event.target)) {
           this.clickEvent = event;
@@ -1627,7 +1627,7 @@
       this.willVisit = (_event) => {
         delete this.clickEvent;
       };
-      this.delegate = delegate;
+      this.delegate = delegate2;
       this.element = element;
     }
     start() {
@@ -1646,7 +1646,7 @@
     }
   };
   var LinkClickObserver = class {
-    constructor(delegate, eventTarget) {
+    constructor(delegate2, eventTarget) {
       this.started = false;
       this.clickCaptured = () => {
         this.eventTarget.removeEventListener("click", this.clickBubbled, false);
@@ -1665,7 +1665,7 @@
           }
         }
       };
-      this.delegate = delegate;
+      this.delegate = delegate2;
       this.eventTarget = eventTarget;
     }
     start() {
@@ -1702,8 +1702,8 @@
     }
   }
   var FormLinkClickObserver = class {
-    constructor(delegate, element) {
-      this.delegate = delegate;
+    constructor(delegate2, element) {
+      this.delegate = delegate2;
       this.linkInterceptor = new LinkClickObserver(this, element);
     }
     start() {
@@ -1747,14 +1747,14 @@
     }
   };
   var Bardo = class {
-    static async preservingPermanentElements(delegate, permanentElementMap, callback) {
-      const bardo = new this(delegate, permanentElementMap);
+    static async preservingPermanentElements(delegate2, permanentElementMap, callback) {
+      const bardo = new this(delegate2, permanentElementMap);
       bardo.enter();
       await callback();
       bardo.leave();
     }
-    constructor(delegate, permanentElementMap) {
-      this.delegate = delegate;
+    constructor(delegate2, permanentElementMap) {
+      this.delegate = delegate2;
       this.permanentElementMap = permanentElementMap;
     }
     enter() {
@@ -1873,9 +1873,9 @@
         currentElement.appendChild(sourceRange.extractContents());
       }
     }
-    constructor(delegate, currentSnapshot, newSnapshot, renderElement, isPreview, willRender = true) {
+    constructor(delegate2, currentSnapshot, newSnapshot, renderElement, isPreview, willRender = true) {
       super(currentSnapshot, newSnapshot, renderElement, isPreview, willRender);
-      this.delegate = delegate;
+      this.delegate = delegate2;
     }
     get shouldRender() {
       return true;
@@ -2200,7 +2200,7 @@
     SystemStatusCode2[SystemStatusCode2["contentTypeMismatch"] = -2] = "contentTypeMismatch";
   })(SystemStatusCode || (SystemStatusCode = {}));
   var Visit = class {
-    constructor(delegate, location2, restorationIdentifier, options = {}) {
+    constructor(delegate2, location2, restorationIdentifier, options = {}) {
       this.identifier = uuid();
       this.timingMetrics = {};
       this.followedRedirect = false;
@@ -2210,7 +2210,7 @@
       this.acceptsStreamResponse = false;
       this.snapshotCached = false;
       this.state = VisitState.initialized;
-      this.delegate = delegate;
+      this.delegate = delegate2;
       this.location = location2;
       this.restorationIdentifier = restorationIdentifier || uuid();
       const { action, historyChanged, referrer, snapshot, snapshotHTML, response, visitCachedSnapshot, willRender, updateHistory, shouldCacheSnapshot, acceptsStreamResponse } = Object.assign(Object.assign({}, defaultOptions), options);
@@ -2711,7 +2711,7 @@
     }
   };
   var History = class {
-    constructor(delegate) {
+    constructor(delegate2) {
       this.restorationIdentifier = uuid();
       this.restorationData = {};
       this.started = false;
@@ -2731,7 +2731,7 @@
         await nextMicrotask();
         this.pageLoaded = true;
       };
-      this.delegate = delegate;
+      this.delegate = delegate2;
     }
     start() {
       if (!this.started) {
@@ -2789,8 +2789,8 @@
     }
   };
   var Navigator = class {
-    constructor(delegate) {
-      this.delegate = delegate;
+    constructor(delegate2) {
+      this.delegate = delegate2;
     }
     proposeVisit(location2, options = {}) {
       if (this.delegate.allowsVisitingLocationWithAction(location2, options.action)) {
@@ -2908,7 +2908,7 @@
     PageStage2[PageStage2["complete"] = 3] = "complete";
   })(PageStage || (PageStage = {}));
   var PageObserver = class {
-    constructor(delegate) {
+    constructor(delegate2) {
       this.stage = PageStage.initial;
       this.started = false;
       this.interpretReadyState = () => {
@@ -2922,7 +2922,7 @@
       this.pageWillUnload = () => {
         this.delegate.pageWillUnload();
       };
-      this.delegate = delegate;
+      this.delegate = delegate2;
     }
     start() {
       if (!this.started) {
@@ -2959,12 +2959,12 @@
     }
   };
   var ScrollObserver = class {
-    constructor(delegate) {
+    constructor(delegate2) {
       this.started = false;
       this.onScroll = () => {
         this.updatePosition({ x: window.pageXOffset, y: window.pageYOffset });
       };
-      this.delegate = delegate;
+      this.delegate = delegate2;
     }
     start() {
       if (!this.started) {
@@ -3008,7 +3008,7 @@
     return permanentElementMap;
   }
   var StreamObserver = class {
-    constructor(delegate) {
+    constructor(delegate2) {
       this.sources = /* @__PURE__ */ new Set();
       this.started = false;
       this.inspectFetchResponse = (event) => {
@@ -3023,7 +3023,7 @@
           this.receiveMessageHTML(event.data);
         }
       };
-      this.delegate = delegate;
+      this.delegate = delegate2;
     }
     start() {
       if (!this.started) {
@@ -3333,9 +3333,9 @@
     }
   };
   var Preloader = class {
-    constructor(delegate) {
+    constructor(delegate2) {
       this.selector = "a[data-turbo-preload]";
-      this.delegate = delegate;
+      this.delegate = delegate2;
     }
     get snapshotCache() {
       return this.delegate.navigator.view.snapshotCache;
@@ -4418,7 +4418,7 @@
     if (Array.isArray(obj))
       return obj.map(walk);
     return Object.keys(obj).reduce(function(acc, key) {
-      var camel = key[0].toLowerCase() + key.slice(1).replace(/([A-Z]+)/g, function(m, x) {
+      var camel = key[0].toLowerCase() + key.slice(1).replace(/([A-Z]+)/g, function(m2, x) {
         return "_" + x.toLowerCase();
       });
       acc[camel] = walk(obj[key]);
@@ -5912,8 +5912,8 @@
             popper: listScrollParents(popper2)
           };
           var orderedModifiers = orderModifiers(mergeByName([].concat(defaultModifiers3, state.options.modifiers)));
-          state.orderedModifiers = orderedModifiers.filter(function(m) {
-            return m.enabled;
+          state.orderedModifiers = orderedModifiers.filter(function(m2) {
+            return m2.enabled;
           });
           runModifierEffects();
           return instance.update();
@@ -6184,14 +6184,14 @@
   var isRTL = () => document.documentElement.dir === "rtl";
   var defineJQueryPlugin = (plugin) => {
     onDOMContentLoaded(() => {
-      const $2 = getjQuery();
-      if ($2) {
+      const $3 = getjQuery();
+      if ($3) {
         const name = plugin.NAME;
-        const JQUERY_NO_CONFLICT = $2.fn[name];
-        $2.fn[name] = plugin.jQueryInterface;
-        $2.fn[name].Constructor = plugin;
-        $2.fn[name].noConflict = () => {
-          $2.fn[name] = JQUERY_NO_CONFLICT;
+        const JQUERY_NO_CONFLICT = $3.fn[name];
+        $3.fn[name] = plugin.jQueryInterface;
+        $3.fn[name].Constructor = plugin;
+        $3.fn[name].noConflict = () => {
+          $3.fn[name] = JQUERY_NO_CONFLICT;
           return plugin.jQueryInterface;
         };
       }
@@ -6390,16 +6390,16 @@
       if (typeof event !== "string" || !element) {
         return null;
       }
-      const $2 = getjQuery();
+      const $3 = getjQuery();
       const typeEvent = getTypeEvent(event);
       const inNamespace = event !== typeEvent;
       let jQueryEvent = null;
       let bubbles = true;
       let nativeDispatch = true;
       let defaultPrevented = false;
-      if (inNamespace && $2) {
-        jQueryEvent = $2.Event(event, args);
-        $2(element).trigger(jQueryEvent);
+      if (inNamespace && $3) {
+        jQueryEvent = $3.Event(event, args);
+        $3(element).trigger(jQueryEvent);
         bubbles = !jQueryEvent.isPropagationStopped();
         nativeDispatch = !jQueryEvent.isImmediatePropagationStopped();
         defaultPrevented = jQueryEvent.isDefaultPrevented();
@@ -9704,7 +9704,625 @@
     });
   });
 
+  // node_modules/@rails/ujs/app/assets/javascripts/rails-ujs.esm.js
+  var linkClickSelector = "a[data-confirm], a[data-method], a[data-remote]:not([disabled]), a[data-disable-with], a[data-disable]";
+  var buttonClickSelector = {
+    selector: "button[data-remote]:not([form]), button[data-confirm]:not([form])",
+    exclude: "form button"
+  };
+  var inputChangeSelector = "select[data-remote], input[data-remote], textarea[data-remote]";
+  var formSubmitSelector = "form:not([data-turbo=true])";
+  var formInputClickSelector = "form:not([data-turbo=true]) input[type=submit], form:not([data-turbo=true]) input[type=image], form:not([data-turbo=true]) button[type=submit], form:not([data-turbo=true]) button:not([type]), input[type=submit][form], input[type=image][form], button[type=submit][form], button[form]:not([type])";
+  var formDisableSelector = "input[data-disable-with]:enabled, button[data-disable-with]:enabled, textarea[data-disable-with]:enabled, input[data-disable]:enabled, button[data-disable]:enabled, textarea[data-disable]:enabled";
+  var formEnableSelector = "input[data-disable-with]:disabled, button[data-disable-with]:disabled, textarea[data-disable-with]:disabled, input[data-disable]:disabled, button[data-disable]:disabled, textarea[data-disable]:disabled";
+  var fileInputSelector = "input[name][type=file]:not([disabled])";
+  var linkDisableSelector = "a[data-disable-with], a[data-disable]";
+  var buttonDisableSelector = "button[data-remote][data-disable-with], button[data-remote][data-disable]";
+  var nonce = null;
+  var loadCSPNonce = () => {
+    const metaTag = document.querySelector("meta[name=csp-nonce]");
+    return nonce = metaTag && metaTag.content;
+  };
+  var cspNonce = () => nonce || loadCSPNonce();
+  var m = Element.prototype.matches || Element.prototype.matchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.msMatchesSelector || Element.prototype.oMatchesSelector || Element.prototype.webkitMatchesSelector;
+  var matches = function(element, selector) {
+    if (selector.exclude) {
+      return m.call(element, selector.selector) && !m.call(element, selector.exclude);
+    } else {
+      return m.call(element, selector);
+    }
+  };
+  var EXPANDO = "_ujsData";
+  var getData = (element, key) => element[EXPANDO] ? element[EXPANDO][key] : void 0;
+  var setData = function(element, key, value) {
+    if (!element[EXPANDO]) {
+      element[EXPANDO] = {};
+    }
+    return element[EXPANDO][key] = value;
+  };
+  var $2 = (selector) => Array.prototype.slice.call(document.querySelectorAll(selector));
+  var isContentEditable = function(element) {
+    var isEditable = false;
+    do {
+      if (element.isContentEditable) {
+        isEditable = true;
+        break;
+      }
+      element = element.parentElement;
+    } while (element);
+    return isEditable;
+  };
+  var csrfToken = () => {
+    const meta = document.querySelector("meta[name=csrf-token]");
+    return meta && meta.content;
+  };
+  var csrfParam = () => {
+    const meta = document.querySelector("meta[name=csrf-param]");
+    return meta && meta.content;
+  };
+  var CSRFProtection = (xhr) => {
+    const token = csrfToken();
+    if (token) {
+      return xhr.setRequestHeader("X-CSRF-Token", token);
+    }
+  };
+  var refreshCSRFTokens = () => {
+    const token = csrfToken();
+    const param = csrfParam();
+    if (token && param) {
+      return $2('form input[name="' + param + '"]').forEach((input) => input.value = token);
+    }
+  };
+  var AcceptHeaders = {
+    "*": "*/*",
+    text: "text/plain",
+    html: "text/html",
+    xml: "application/xml, text/xml",
+    json: "application/json, text/javascript",
+    script: "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript"
+  };
+  var ajax = (options) => {
+    options = prepareOptions(options);
+    var xhr = createXHR(options, function() {
+      const response = processResponse(xhr.response != null ? xhr.response : xhr.responseText, xhr.getResponseHeader("Content-Type"));
+      if (Math.floor(xhr.status / 100) === 2) {
+        if (typeof options.success === "function") {
+          options.success(response, xhr.statusText, xhr);
+        }
+      } else {
+        if (typeof options.error === "function") {
+          options.error(response, xhr.statusText, xhr);
+        }
+      }
+      return typeof options.complete === "function" ? options.complete(xhr, xhr.statusText) : void 0;
+    });
+    if (options.beforeSend && !options.beforeSend(xhr, options)) {
+      return false;
+    }
+    if (xhr.readyState === XMLHttpRequest.OPENED) {
+      return xhr.send(options.data);
+    }
+  };
+  var prepareOptions = function(options) {
+    options.url = options.url || location.href;
+    options.type = options.type.toUpperCase();
+    if (options.type === "GET" && options.data) {
+      if (options.url.indexOf("?") < 0) {
+        options.url += "?" + options.data;
+      } else {
+        options.url += "&" + options.data;
+      }
+    }
+    if (!(options.dataType in AcceptHeaders)) {
+      options.dataType = "*";
+    }
+    options.accept = AcceptHeaders[options.dataType];
+    if (options.dataType !== "*") {
+      options.accept += ", */*; q=0.01";
+    }
+    return options;
+  };
+  var createXHR = function(options, done) {
+    const xhr = new XMLHttpRequest();
+    xhr.open(options.type, options.url, true);
+    xhr.setRequestHeader("Accept", options.accept);
+    if (typeof options.data === "string") {
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+    }
+    if (!options.crossDomain) {
+      xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+      CSRFProtection(xhr);
+    }
+    xhr.withCredentials = !!options.withCredentials;
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        return done(xhr);
+      }
+    };
+    return xhr;
+  };
+  var processResponse = function(response, type) {
+    if (typeof response === "string" && typeof type === "string") {
+      if (type.match(/\bjson\b/)) {
+        try {
+          response = JSON.parse(response);
+        } catch (error) {
+        }
+      } else if (type.match(/\b(?:java|ecma)script\b/)) {
+        const script = document.createElement("script");
+        script.setAttribute("nonce", cspNonce());
+        script.text = response;
+        document.head.appendChild(script).parentNode.removeChild(script);
+      } else if (type.match(/\b(xml|html|svg)\b/)) {
+        const parser = new DOMParser();
+        type = type.replace(/;.+/, "");
+        try {
+          response = parser.parseFromString(response, type);
+        } catch (error1) {
+        }
+      }
+    }
+    return response;
+  };
+  var href = (element) => element.href;
+  var isCrossDomain = function(url) {
+    const originAnchor = document.createElement("a");
+    originAnchor.href = location.href;
+    const urlAnchor = document.createElement("a");
+    try {
+      urlAnchor.href = url;
+      return !((!urlAnchor.protocol || urlAnchor.protocol === ":") && !urlAnchor.host || originAnchor.protocol + "//" + originAnchor.host === urlAnchor.protocol + "//" + urlAnchor.host);
+    } catch (e) {
+      return true;
+    }
+  };
+  var preventDefault;
+  var { CustomEvent: CustomEvent2 } = window;
+  if (typeof CustomEvent2 !== "function") {
+    CustomEvent2 = function(event, params) {
+      const evt = document.createEvent("CustomEvent");
+      evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+      return evt;
+    };
+    CustomEvent2.prototype = window.Event.prototype;
+    ({ preventDefault } = CustomEvent2.prototype);
+    CustomEvent2.prototype.preventDefault = function() {
+      const result = preventDefault.call(this);
+      if (this.cancelable && !this.defaultPrevented) {
+        Object.defineProperty(this, "defaultPrevented", {
+          get() {
+            return true;
+          }
+        });
+      }
+      return result;
+    };
+  }
+  var fire = (obj, name, data) => {
+    const event = new CustomEvent2(name, {
+      bubbles: true,
+      cancelable: true,
+      detail: data
+    });
+    obj.dispatchEvent(event);
+    return !event.defaultPrevented;
+  };
+  var stopEverything = (e) => {
+    fire(e.target, "ujs:everythingStopped");
+    e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+  };
+  var delegate = (element, selector, eventType, handler) => element.addEventListener(eventType, function(e) {
+    let { target } = e;
+    while (!!(target instanceof Element) && !matches(target, selector)) {
+      target = target.parentNode;
+    }
+    if (target instanceof Element && handler.call(target, e) === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  });
+  var toArray = (e) => Array.prototype.slice.call(e);
+  var serializeElement = (element, additionalParam) => {
+    let inputs = [element];
+    if (matches(element, "form")) {
+      inputs = toArray(element.elements);
+    }
+    const params = [];
+    inputs.forEach(function(input) {
+      if (!input.name || input.disabled) {
+        return;
+      }
+      if (matches(input, "fieldset[disabled] *")) {
+        return;
+      }
+      if (matches(input, "select")) {
+        toArray(input.options).forEach(function(option) {
+          if (option.selected) {
+            params.push({
+              name: input.name,
+              value: option.value
+            });
+          }
+        });
+      } else if (input.checked || ["radio", "checkbox", "submit"].indexOf(input.type) === -1) {
+        params.push({
+          name: input.name,
+          value: input.value
+        });
+      }
+    });
+    if (additionalParam) {
+      params.push(additionalParam);
+    }
+    return params.map(function(param) {
+      if (param.name) {
+        return `${encodeURIComponent(param.name)}=${encodeURIComponent(param.value)}`;
+      } else {
+        return param;
+      }
+    }).join("&");
+  };
+  var formElements = (form, selector) => {
+    if (matches(form, "form")) {
+      return toArray(form.elements).filter((el) => matches(el, selector));
+    } else {
+      return toArray(form.querySelectorAll(selector));
+    }
+  };
+  var handleConfirmWithRails = (rails) => function(e) {
+    if (!allowAction(this, rails)) {
+      stopEverything(e);
+    }
+  };
+  var confirm2 = (message, element) => window.confirm(message);
+  var allowAction = function(element, rails) {
+    let callback;
+    const message = element.getAttribute("data-confirm");
+    if (!message) {
+      return true;
+    }
+    let answer = false;
+    if (fire(element, "confirm")) {
+      try {
+        answer = rails.confirm(message, element);
+      } catch (error) {
+      }
+      callback = fire(element, "confirm:complete", [answer]);
+    }
+    return answer && callback;
+  };
+  var handleDisabledElement = function(e) {
+    const element = this;
+    if (element.disabled) {
+      stopEverything(e);
+    }
+  };
+  var enableElement = (e) => {
+    let element;
+    if (e instanceof Event) {
+      if (isXhrRedirect(e)) {
+        return;
+      }
+      element = e.target;
+    } else {
+      element = e;
+    }
+    if (isContentEditable(element)) {
+      return;
+    }
+    if (matches(element, linkDisableSelector)) {
+      return enableLinkElement(element);
+    } else if (matches(element, buttonDisableSelector) || matches(element, formEnableSelector)) {
+      return enableFormElement(element);
+    } else if (matches(element, formSubmitSelector)) {
+      return enableFormElements(element);
+    }
+  };
+  var disableElement = (e) => {
+    const element = e instanceof Event ? e.target : e;
+    if (isContentEditable(element)) {
+      return;
+    }
+    if (matches(element, linkDisableSelector)) {
+      return disableLinkElement(element);
+    } else if (matches(element, buttonDisableSelector) || matches(element, formDisableSelector)) {
+      return disableFormElement(element);
+    } else if (matches(element, formSubmitSelector)) {
+      return disableFormElements(element);
+    }
+  };
+  var disableLinkElement = function(element) {
+    if (getData(element, "ujs:disabled")) {
+      return;
+    }
+    const replacement = element.getAttribute("data-disable-with");
+    if (replacement != null) {
+      setData(element, "ujs:enable-with", element.innerHTML);
+      element.innerHTML = replacement;
+    }
+    element.addEventListener("click", stopEverything);
+    return setData(element, "ujs:disabled", true);
+  };
+  var enableLinkElement = function(element) {
+    const originalText = getData(element, "ujs:enable-with");
+    if (originalText != null) {
+      element.innerHTML = originalText;
+      setData(element, "ujs:enable-with", null);
+    }
+    element.removeEventListener("click", stopEverything);
+    return setData(element, "ujs:disabled", null);
+  };
+  var disableFormElements = (form) => formElements(form, formDisableSelector).forEach(disableFormElement);
+  var disableFormElement = function(element) {
+    if (getData(element, "ujs:disabled")) {
+      return;
+    }
+    const replacement = element.getAttribute("data-disable-with");
+    if (replacement != null) {
+      if (matches(element, "button")) {
+        setData(element, "ujs:enable-with", element.innerHTML);
+        element.innerHTML = replacement;
+      } else {
+        setData(element, "ujs:enable-with", element.value);
+        element.value = replacement;
+      }
+    }
+    element.disabled = true;
+    return setData(element, "ujs:disabled", true);
+  };
+  var enableFormElements = (form) => formElements(form, formEnableSelector).forEach((element) => enableFormElement(element));
+  var enableFormElement = function(element) {
+    const originalText = getData(element, "ujs:enable-with");
+    if (originalText != null) {
+      if (matches(element, "button")) {
+        element.innerHTML = originalText;
+      } else {
+        element.value = originalText;
+      }
+      setData(element, "ujs:enable-with", null);
+    }
+    element.disabled = false;
+    return setData(element, "ujs:disabled", null);
+  };
+  var isXhrRedirect = function(event) {
+    const xhr = event.detail ? event.detail[0] : void 0;
+    return xhr && xhr.getResponseHeader("X-Xhr-Redirect");
+  };
+  var handleMethodWithRails = (rails) => function(e) {
+    const link = this;
+    const method = link.getAttribute("data-method");
+    if (!method) {
+      return;
+    }
+    if (isContentEditable(this)) {
+      return;
+    }
+    const href2 = rails.href(link);
+    const csrfToken$1 = csrfToken();
+    const csrfParam$1 = csrfParam();
+    const form = document.createElement("form");
+    let formContent = `<input name='_method' value='${method}' type='hidden' />`;
+    if (csrfParam$1 && csrfToken$1 && !isCrossDomain(href2)) {
+      formContent += `<input name='${csrfParam$1}' value='${csrfToken$1}' type='hidden' />`;
+    }
+    formContent += '<input type="submit" />';
+    form.method = "post";
+    form.action = href2;
+    form.target = link.target;
+    form.innerHTML = formContent;
+    form.style.display = "none";
+    document.body.appendChild(form);
+    form.querySelector('[type="submit"]').click();
+    stopEverything(e);
+  };
+  var isRemote = function(element) {
+    const value = element.getAttribute("data-remote");
+    return value != null && value !== "false";
+  };
+  var handleRemoteWithRails = (rails) => function(e) {
+    let data, method, url;
+    const element = this;
+    if (!isRemote(element)) {
+      return true;
+    }
+    if (!fire(element, "ajax:before")) {
+      fire(element, "ajax:stopped");
+      return false;
+    }
+    if (isContentEditable(element)) {
+      fire(element, "ajax:stopped");
+      return false;
+    }
+    const withCredentials = element.getAttribute("data-with-credentials");
+    const dataType = element.getAttribute("data-type") || "script";
+    if (matches(element, formSubmitSelector)) {
+      const button = getData(element, "ujs:submit-button");
+      method = getData(element, "ujs:submit-button-formmethod") || element.getAttribute("method") || "get";
+      url = getData(element, "ujs:submit-button-formaction") || element.getAttribute("action") || location.href;
+      if (method.toUpperCase() === "GET") {
+        url = url.replace(/\?.*$/, "");
+      }
+      if (element.enctype === "multipart/form-data") {
+        data = new FormData(element);
+        if (button != null) {
+          data.append(button.name, button.value);
+        }
+      } else {
+        data = serializeElement(element, button);
+      }
+      setData(element, "ujs:submit-button", null);
+      setData(element, "ujs:submit-button-formmethod", null);
+      setData(element, "ujs:submit-button-formaction", null);
+    } else if (matches(element, buttonClickSelector) || matches(element, inputChangeSelector)) {
+      method = element.getAttribute("data-method");
+      url = element.getAttribute("data-url");
+      data = serializeElement(element, element.getAttribute("data-params"));
+    } else {
+      method = element.getAttribute("data-method");
+      url = rails.href(element);
+      data = element.getAttribute("data-params");
+    }
+    ajax({
+      type: method || "GET",
+      url,
+      data,
+      dataType,
+      beforeSend(xhr, options) {
+        if (fire(element, "ajax:beforeSend", [xhr, options])) {
+          return fire(element, "ajax:send", [xhr]);
+        } else {
+          fire(element, "ajax:stopped");
+          return false;
+        }
+      },
+      success(...args) {
+        return fire(element, "ajax:success", args);
+      },
+      error(...args) {
+        return fire(element, "ajax:error", args);
+      },
+      complete(...args) {
+        return fire(element, "ajax:complete", args);
+      },
+      crossDomain: isCrossDomain(url),
+      withCredentials: withCredentials != null && withCredentials !== "false"
+    });
+    stopEverything(e);
+  };
+  var formSubmitButtonClick = function(e) {
+    const button = this;
+    const { form } = button;
+    if (!form) {
+      return;
+    }
+    if (button.name) {
+      setData(form, "ujs:submit-button", {
+        name: button.name,
+        value: button.value
+      });
+    }
+    setData(form, "ujs:formnovalidate-button", button.formNoValidate);
+    setData(form, "ujs:submit-button-formaction", button.getAttribute("formaction"));
+    return setData(form, "ujs:submit-button-formmethod", button.getAttribute("formmethod"));
+  };
+  var preventInsignificantClick = function(e) {
+    const link = this;
+    const method = (link.getAttribute("data-method") || "GET").toUpperCase();
+    const data = link.getAttribute("data-params");
+    const metaClick = e.metaKey || e.ctrlKey;
+    const insignificantMetaClick = metaClick && method === "GET" && !data;
+    const nonPrimaryMouseClick = e.button != null && e.button !== 0;
+    if (nonPrimaryMouseClick || insignificantMetaClick) {
+      e.stopImmediatePropagation();
+    }
+  };
+  var Rails = {
+    $: $2,
+    ajax,
+    buttonClickSelector,
+    buttonDisableSelector,
+    confirm: confirm2,
+    cspNonce,
+    csrfToken,
+    csrfParam,
+    CSRFProtection,
+    delegate,
+    disableElement,
+    enableElement,
+    fileInputSelector,
+    fire,
+    formElements,
+    formEnableSelector,
+    formDisableSelector,
+    formInputClickSelector,
+    formSubmitButtonClick,
+    formSubmitSelector,
+    getData,
+    handleDisabledElement,
+    href,
+    inputChangeSelector,
+    isCrossDomain,
+    linkClickSelector,
+    linkDisableSelector,
+    loadCSPNonce,
+    matches,
+    preventInsignificantClick,
+    refreshCSRFTokens,
+    serializeElement,
+    setData,
+    stopEverything
+  };
+  var handleConfirm = handleConfirmWithRails(Rails);
+  Rails.handleConfirm = handleConfirm;
+  var handleMethod = handleMethodWithRails(Rails);
+  Rails.handleMethod = handleMethod;
+  var handleRemote = handleRemoteWithRails(Rails);
+  Rails.handleRemote = handleRemote;
+  var start3 = function() {
+    if (window._rails_loaded) {
+      throw new Error("rails-ujs has already been loaded!");
+    }
+    window.addEventListener("pageshow", function() {
+      $2(formEnableSelector).forEach(function(el) {
+        if (getData(el, "ujs:disabled")) {
+          enableElement(el);
+        }
+      });
+      $2(linkDisableSelector).forEach(function(el) {
+        if (getData(el, "ujs:disabled")) {
+          enableElement(el);
+        }
+      });
+    });
+    delegate(document, linkDisableSelector, "ajax:complete", enableElement);
+    delegate(document, linkDisableSelector, "ajax:stopped", enableElement);
+    delegate(document, buttonDisableSelector, "ajax:complete", enableElement);
+    delegate(document, buttonDisableSelector, "ajax:stopped", enableElement);
+    delegate(document, linkClickSelector, "click", preventInsignificantClick);
+    delegate(document, linkClickSelector, "click", handleDisabledElement);
+    delegate(document, linkClickSelector, "click", handleConfirm);
+    delegate(document, linkClickSelector, "click", disableElement);
+    delegate(document, linkClickSelector, "click", handleRemote);
+    delegate(document, linkClickSelector, "click", handleMethod);
+    delegate(document, buttonClickSelector, "click", preventInsignificantClick);
+    delegate(document, buttonClickSelector, "click", handleDisabledElement);
+    delegate(document, buttonClickSelector, "click", handleConfirm);
+    delegate(document, buttonClickSelector, "click", disableElement);
+    delegate(document, buttonClickSelector, "click", handleRemote);
+    delegate(document, inputChangeSelector, "change", handleDisabledElement);
+    delegate(document, inputChangeSelector, "change", handleConfirm);
+    delegate(document, inputChangeSelector, "change", handleRemote);
+    delegate(document, formSubmitSelector, "submit", handleDisabledElement);
+    delegate(document, formSubmitSelector, "submit", handleConfirm);
+    delegate(document, formSubmitSelector, "submit", handleRemote);
+    delegate(document, formSubmitSelector, "submit", (e) => setTimeout(() => disableElement(e), 13));
+    delegate(document, formSubmitSelector, "ajax:send", disableElement);
+    delegate(document, formSubmitSelector, "ajax:complete", enableElement);
+    delegate(document, formInputClickSelector, "click", preventInsignificantClick);
+    delegate(document, formInputClickSelector, "click", handleDisabledElement);
+    delegate(document, formInputClickSelector, "click", handleConfirm);
+    delegate(document, formInputClickSelector, "click", formSubmitButtonClick);
+    document.addEventListener("DOMContentLoaded", refreshCSRFTokens);
+    document.addEventListener("DOMContentLoaded", loadCSPNonce);
+    return window._rails_loaded = true;
+  };
+  Rails.start = start3;
+  if (typeof jQuery !== "undefined" && jQuery && jQuery.ajax) {
+    if (jQuery.rails) {
+      throw new Error("If you load both jquery_ujs and rails-ujs, use rails-ujs only.");
+    }
+    jQuery.rails = Rails;
+    jQuery.ajaxPrefilter(function(options, originalOptions, xhr) {
+      if (!options.crossDomain) {
+        return CSRFProtection(xhr);
+      }
+    });
+  }
+
   // app/javascript/application.js
+  Rails.start();
   document.addEventListener("turbo:load", () => {
     $("#search-field-id").autocomplete({
       source: "/autocompletes/songs",
