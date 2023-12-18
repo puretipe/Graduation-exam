@@ -39,6 +39,7 @@
 
         <div class="actions">
           <%= f.submit "更新する", class: "btn btn-primary" %>
+          <%= link_to '削除', @song, method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
         </div>
       <% end %>
     </div>

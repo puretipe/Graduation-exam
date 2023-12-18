@@ -4,6 +4,7 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@hotwired/turbo-rails": "^7.3.0",
     "@popperjs/core": "^2.11.8",
+    "@rails/ujs": "^7.1.2",
     "bootstrap": "^5.3.2",
     "esbuild": "^0.19.5",
     "popper.js": "^1.16.1",
