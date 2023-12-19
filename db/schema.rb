@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_08_093524) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_19_085135) do
   create_table "evaluations", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "song_id", null: false
@@ -19,6 +19,15 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_08_093524) do
     t.datetime "updated_at", null: false
     t.index ["song_id"], name: "index_evaluations_on_song_id"
     t.index ["user_id"], name: "index_evaluations_on_user_id"
+  end
+
+  create_table "favorites", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "song_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["song_id"], name: "index_favorites_on_song_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "focus_points", charset: "utf8mb4", force: :cascade do |t|
@@ -71,6 +80,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_08_093524) do
 
   add_foreign_key "evaluations", "songs"
   add_foreign_key "evaluations", "users"
+  add_foreign_key "favorites", "songs"
+  add_foreign_key "favorites", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "songs", "focus_points"
   add_foreign_key "songs", "genres"

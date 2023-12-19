@@ -3,6 +3,8 @@ class Song < ApplicationRecord
   belongs_to :genre
   belongs_to :focus_point
   has_many :evaluations, dependent: :destroy
+  has_many :favorites
+  has_many :favorited_by, through: :favorites, source: :user
   attr_accessor :genre_name
 
   before_validation :set_genre, on: [:create, :update]
