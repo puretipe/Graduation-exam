@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resource :user_session, only: [:new, :create, :destroy]
   resources :songs do
     resources :evaluations, only: [:create, :update, :destroy]
+    resources :favorites, only: [:create, :destroy]
     collection do
       get 'my_songs'
     end

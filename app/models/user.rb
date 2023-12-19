@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :songs
   has_many :evaluations, dependent: :destroy
   has_one :profile, dependent: :destroy
+  has_many :favorites
+  has_many :favorited_songs, through: :favorites, source: :song
   after_create :create_user_profile
 
   validates :name, presence: true, length: { maximum: 255 }
