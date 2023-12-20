@@ -1,0 +1,11 @@
+<div class="container mt-4">
+  <div class="text-center">
+    <%= render 'songs/search_form', q: @q, search_url: favorites_songs_path %>
+  </div>
+
+  <%= render 'songs/songs_table', songs: @songs %>
+
+  <div class="pagination">
+    <%= paginate @songs, theme: 'bootstrap-5' %>
+  </div>
+</div>
