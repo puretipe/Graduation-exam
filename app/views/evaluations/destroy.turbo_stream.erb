@@ -5,5 +5,5 @@
 <% end %>
 
 <%= turbo_stream.replace "evaluation_buttons" do %>
-  <%= render partial: "songs/evaluation_buttons", locals: { song: @song, current_user: current_user } %>
+  <%= render "songs/evaluation_buttons", locals: { song: @song, current_user: current_user } %>
 <% end %>
