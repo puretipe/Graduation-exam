@@ -10,7 +10,7 @@ class Song < ApplicationRecord
   before_validation :set_genre, on: [:create, :update]
   before_save :convert_to_embed_url
   validate :valid_embed_url
-  validate :validate_video
+  validate :validate_video, on: :create
   validates :title, presence: true, length: { maximum: 255 }
   validates :artist, presence: true, length: { maximum: 255 }
   validates :embed_url, presence: true, length: { maximum: 255 }, uniqueness: true
@@ -40,7 +40,7 @@ class Song < ApplicationRecord
   private
 
   def valid_embed_url
-    return if embed_url.blank?
+    return if new_record? || embed_url.blank?
   
     youtube_regex = %r{\Ahttps?://(www\.youtube\.com/watch\?v=|www\.youtube\.com/embed/|youtu\.be/)[^/\s]+\z}
     niconico_regex = %r{\Ahttps?://(www\.nicovideo\.jp/watch/|embed\.nicovideo\.jp/watch/)[^/\s]+\z}
