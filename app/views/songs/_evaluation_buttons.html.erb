@@ -3,9 +3,18 @@
     <% evaluation_count = @song.evaluations.where(evaluation_point: value).count %>
     <% evaluation = @song.evaluations.find_or_initialize_by(user: current_user, evaluation_point: value) %>
     <% is_evaluated = evaluation.persisted? %>
-    <%= form_with(model: [ @song, evaluation ], local: false, method: (is_evaluated ? :delete : :post)) do |form| %>
-      <%= form.hidden_field :evaluation_point, value: value %>
-      <%= form.submit "#{t("evaluation_points.#{point}")}がすき！ (#{evaluation_count})", class: "btn #{is_evaluated ? 'btn-primary' : 'btn-outline-primary'}" %>
+    <% if is_evaluated %>
+      <%= link_to "#{t("evaluation_points.#{point}")}がすき！ (#{evaluation_count})", 
+                  song_evaluation_path(@song, evaluation),
+                  id: "evaluation_form_#{value}", 
+                  class: "btn btn-primary", 
+                  data: { turbo_method: :delete } %>
+    <% else %>
+      <%= link_to "#{t("evaluation_points.#{point}")}がすき！ (#{evaluation_count})", 
+                  song_evaluations_path(@song, evaluation: { evaluation_point: value }),
+                  id: "evaluation_form_#{value}", 
+                  class: "btn btn-outline-primary", 
+                  data: { turbo_method: :post } %>
     <% end %>
   <% end %>
 </div>
