@@ -8,11 +8,13 @@
           </div>
           <h2 class="card-title text-center"><%= @song.title %></h3>
 
-          <% if current_user.favorited_songs.include?(@song) %>
-            <%= link_to 'お気に入り解除', song_favorite_path(@song, current_user.favorites.find_by(song: @song)), method: :delete, class: 'btn btn-secondary' %>
-          <% else %>
-            <%= link_to 'お気に入り登録', song_favorites_path(@song), method: :post, class: 'btn btn-primary' %>
-          <% end %>
+          <div class="d-flex justify-content-end mb-3">
+            <% if current_user.favorited_songs.include?(@song) %>
+              <%= render 'unfavorite_button', song: @song %>
+            <% else %>
+              <%= render 'favorite_button', song: @song %>
+            <% end %>
+          </div>
 
           <div class="d-flex justify-content-around flex-wrap mb-3">
             <%= render partial: "songs/evaluation_buttons", locals: { song: @song, current_evaluation: @evaluation } %>
