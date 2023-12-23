@@ -1,0 +1,13 @@
+<div id="comment-<%= comment.id %>" class="card mb-3">
+  <div class="card-body">
+    <p class="card-text"><%= comment.content %></p>
+    <p class="card-text">
+      <small class="text-muted">
+        投稿者: <%= comment.user.name %> | <%= time_ago_in_words(comment.created_at) %>前
+      </small>
+    </p>
+    <% if current_user == comment.user %>
+      <%= link_to '削除', song_comment_path(comment.song, comment), data: { turbo_method: :delete, turbo_confirm: "コメントを削除しますか？" }, class: 'btn btn-danger btn-sm' %>
+    <% end %>
+  </div>
+</div>

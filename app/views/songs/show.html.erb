@@ -29,6 +29,13 @@
           <% if current_user == @song.user %>
             <%= link_to '編集', edit_song_path(@song), class: 'btn btn-primary' %>
           <% end %>
+
+          <h3>コメントする</h3>
+          <%= render 'comments/form', comment: @comment, song: @song %>
+          <h3>コメント一覧</h3>
+          <div id="comments-list">
+            <%= render @comments %>
+          </div>
         </div>
       </div>
     </div>
