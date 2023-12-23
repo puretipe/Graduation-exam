@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :songs do
     resources :evaluations, only: [:create, :update, :destroy]
     resources :favorites, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
     collection do
       get 'my_songs'
       get :favorites

@@ -43,6 +43,8 @@ class SongsController < ApplicationController
 
   def show
     @song = Song.find(params[:id])
+    @comment = Comment.new
+    @comments = @song.comments.includes(:user).order(created_at: :desc)
   end
 
   def edit

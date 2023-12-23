@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_19_085135) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_22_042238) do
+  create_table "comments", charset: "utf8mb4", force: :cascade do |t|
+    t.text "content"
+    t.bigint "song_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["song_id"], name: "index_comments_on_song_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "evaluations", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "song_id", null: false
@@ -78,6 +88,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_19_085135) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "comments", "songs"
+  add_foreign_key "comments", "users"
   add_foreign_key "evaluations", "songs"
   add_foreign_key "evaluations", "users"
   add_foreign_key "favorites", "songs"
