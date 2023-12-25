@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_22_042238) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_25_080806) do
   create_table "comments", charset: "utf8mb4", force: :cascade do |t|
     t.text "content"
     t.bigint "song_id", null: false
@@ -86,6 +86,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_22_042238) do
     t.string "salt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_token_expires_at"
+    t.datetime "reset_password_email_sent_at"
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end
 
   add_foreign_key "comments", "songs"
