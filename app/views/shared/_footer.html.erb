@@ -1,8 +1,10 @@
 <footer class="bg-light py-3 mt-auto">
   <div class="container">
     <ul class="list-inline text-center">
-      <li class="list-inline-item"><a href="#">利用規約</a></li>
-      <li class="list-inline-item"><a href="#">プライバシーポリシー</a></li>
+      <ul class="list-inline">
+        <li class="list-inline-item"><%= link_to '利用規約', terms_of_service_path %></li>
+        <li class="list-inline-item"><%= link_to 'プライバシーポリシー', privacy_policy_path %></li>
+      </ul>
     </ul>
   </div>
 </footer>
