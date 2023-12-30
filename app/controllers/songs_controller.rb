@@ -2,16 +2,7 @@ class SongsController < ApplicationController
   before_action :require_login, only: [:new, :create, :my_songs, :edit, :update, :destroy, :favorites]
 
   def index
-    @q = Song.ransack(params[:q])
-    @songs = @q.result.includes(:genre, :focus_point, :evaluations)
-    if params[:q] && params[:q][:s] && params[:q][:s].include?("_evaluations_count")
-      sort_param = params[:q][:s]
-      evaluation_type, order = sort_param.split(' ').first.split('_evaluations_count').first, sort_param.split.last
-      @songs = @songs.sorted_by_evaluations(evaluation_type, order)
-    else
-      @songs = @songs.order(created_at: :desc)
-    end
-    @songs = @songs.page(params[:page])
+    load_songs(Song.all)
   end
 
   def new
@@ -21,11 +12,7 @@ class SongsController < ApplicationController
 
   def create
     @song = current_user.songs.new(song_params)
-    if @song.embed_url.include?('youtube.com')
-      @song.thumbnail_url = YoutubeService.get_thumbnail_url(@song.embed_url)
-    elsif @song.embed_url.include?('nicovideo.jp')
-      @song.thumbnail_url = NiconicoService.get_thumbnail_url(@song.embed_url)
-    end
+    @song.thumbnail_url = ThumbnailFetcher.fetch(@song.embed_url)
     begin
       if @song.save
         flash[:success] = '投稿が完了しました'
@@ -81,34 +68,29 @@ class SongsController < ApplicationController
   end
 
   def my_songs
-    @q = current_user.songs.ransack(params[:q])
-    @songs = @q.result.includes(:genre, :focus_point, :evaluations)
-    if params[:q] && params[:q][:s] && params[:q][:s].include?("_evaluations_count")
-      sort_param = params[:q][:s]
-      evaluation_type, order = sort_param.split(' ').first.split('_evaluations_count').first, sort_param.split.last
-      @songs = @songs.sorted_by_evaluations(evaluation_type, order)
-    else
-      @songs = @songs.order(created_at: :desc)
-    end
-    @songs = @songs.page(params[:page])
+    load_songs(current_user.songs)
   end
 
   def favorites
-    @q = current_user.favorited_songs.ransack(params[:q])
-    @songs = @q.result.includes(:genre, :focus_point, :evaluations)
-    if params[:q] && params[:q][:s] && params[:q][:s].include?("_evaluations_count")
-      sort_param = params[:q][:s]
-      evaluation_type, order = sort_param.split(' ').first.split('_evaluations_count').first, sort_param.split.last
-      @songs = @songs.sorted_by_evaluations(evaluation_type, order)
-    else
-      @songs = @songs.order(created_at: :desc)
-    end
-    @songs = @songs.page(params[:page])
+    load_songs(current_user.favorited_songs)
   end
 
   private
 
   def song_params
     params.require(:song).permit(:title, :artist, :embed_url, :software_name, :description, :genre_name, :focus_point_id)
+  end
+
+  def load_songs(songs)
+    @q = songs.ransack(params[:q])
+    @songs = @q.result.includes(:genre, :focus_point, :evaluations)
+    if params[:q] && params[:q][:s] && params[:q][:s].include?("_evaluations_count")
+      sort_param = params[:q][:s]
+      evaluation_type, order = sort_param.split(' ').first.split('_evaluations_count').first, sort_param.split.last
+      @songs = @songs.sorted_by_evaluations(evaluation_type, order)
+    else
+      @songs = @songs.order(created_at: :desc)
+    end
+    @songs = @songs.page(params[:page])
   end
 end
