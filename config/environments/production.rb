@@ -84,6 +84,7 @@ Rails.application.configure do
   )
 
   config.action_mailer.default_url_options = { host: 'www.vocaloidselection.com' }
+  config.action_mailer.default_options = { from: 'puretipe1104@gmail.com' }
   config.action_mailer.delivery_method = :ses
   config.action_mailer.perform_deliveries = true
   config.action_mailer.perform_caching = false
