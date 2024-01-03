@@ -12,7 +12,8 @@ class SongsController < ApplicationController
 
   def create
     @song = current_user.songs.new(song_params)
-    @song.thumbnail_url = ThumbnailFetcher.fetch(@song.embed_url)
+    full_url = convert_to_full_url(@song.embed_url)
+    @song.thumbnail_url = ThumbnailFetcher.fetch(full_url)
     begin
       if @song.save
         flash[:success] = '投稿が完了しました'
@@ -92,5 +93,13 @@ class SongsController < ApplicationController
       @songs = @songs.order(created_at: :desc)
     end
     @songs = @songs.page(params[:page])
+  end
+
+  def convert_to_full_url(url)
+    if url.include?("youtu.be")
+      "https://www.youtube.com/watch?v=#{YoutubeService.extract_youtube_id(url)}"
+    else
+      url
+    end
   end
 end
