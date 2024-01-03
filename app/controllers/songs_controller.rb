@@ -12,7 +12,7 @@ class SongsController < ApplicationController
 
   def create
     @song = current_user.songs.new(song_params)
-    full_url = convert_to_full_url(@song.embed_url)
+    full_url = UrlConverter.to_full_youtube_url(@song.embed_url)
     @song.thumbnail_url = ThumbnailFetcher.fetch(full_url)
     begin
       if @song.save

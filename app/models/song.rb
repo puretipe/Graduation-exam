@@ -40,6 +40,10 @@ class Song < ApplicationRecord
 
   private
 
+  def convert_to_embed_url
+    self.embed_url = UrlConverter.to_embed_url(embed_url)
+  end
+
   def valid_embed_url
     return if embed_url.blank?
   
@@ -51,16 +55,6 @@ class Song < ApplicationRecord
     end
   end
 
-  def convert_to_embed_url
-    if embed_url =~ %r{\Ahttps?://www\.youtube\.com/watch\?v=([^&]+)}
-      self.embed_url = "https://www.youtube.com/embed/#{$1}"
-    elsif embed_url =~ %r{\Ahttps?://youtu\.be/([^/?]+)}
-      self.embed_url = "https://www.youtube.com/embed/#{$1}"
-    elsif embed_url =~ %r{\Ahttps?://www\.nicovideo\.jp/watch/([^/?]+)}
-      self.embed_url = "https://embed.nicovideo.jp/watch/#{$1}"
-    end
-  end
-
   def set_genre
     return if genre_name.blank?
     genre = Genre.find_or_create_by(name: genre_name)
@@ -68,26 +62,10 @@ class Song < ApplicationRecord
   end
 
   def validate_video
-    video_info = get_video_info
+    video_info = VideoInfoFetcher.get_video_info(embed_url)
     return if video_info && video_uses_synthesized_music?(video_info)
 
     errors.add(:embed_url, "に入力した楽曲は音声合成ソフトウェアを使用している必要があります。動画のタイトル、概要欄、タグ等に音声合成ソフト関連のワードが含まれているか確認して下さい。")
-  end
-
-  def get_video_info
-    if embed_url.include?("youtube.com") || embed_url.include?("youtu.be")
-      YoutubeService.get_video_info(convert_to_full_youtube_url(embed_url))
-    elsif embed_url.include?("nicovideo.jp")
-      NiconicoService.get_video_info(embed_url)
-    end
-  end
-
-  def convert_to_full_youtube_url(url)
-    if url =~ %r{\Ahttps?://youtu\.be/([^/?]+)}
-      "https://www.youtube.com/watch?v=#{$1}"
-    else
-      url
-    end
   end
 
   def video_uses_synthesized_music?(video_info)
