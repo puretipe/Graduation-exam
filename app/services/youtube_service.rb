@@ -27,7 +27,12 @@ class YoutubeService
   end
 
   def self.extract_youtube_id(url)
-    CGI.parse(URI(url).query)['v'].first
+    uri = URI(url)
+    if uri.host == 'youtu.be'
+      uri.path[1..]
+    else
+      CGI.parse(uri.query)['v'].first
+    end
   rescue
     nil
   end

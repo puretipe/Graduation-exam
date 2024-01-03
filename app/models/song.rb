@@ -18,7 +18,7 @@ class Song < ApplicationRecord
   validates :software_name, presence: true, length: { maximum: 255 }
 
   SYNTHESIZER_KEYWORDS = ["初音ミク", "VOCALOID", "可不", "CeVIO", "Synthesizer", "UTAU", "VOICEBOX", "flower", "巡音ルカ", "鏡音",
-                          "ボーカロイド", "ずんだもん"]
+                          "ボーカロイド", "ずんだもん", "重音テト"]
 
   def self.ransackable_attributes(auth_object = nil)
     %w[title artist software_name genre_id]
@@ -40,22 +40,18 @@ class Song < ApplicationRecord
 
   private
 
+  def convert_to_embed_url
+    self.embed_url = UrlConverter.to_embed_url(embed_url)
+  end
+
   def valid_embed_url
-    return if new_record? || embed_url.blank?
+    return if embed_url.blank?
   
     youtube_regex = %r{\Ahttps?://(www\.youtube\.com/watch\?v=|www\.youtube\.com/embed/|youtu\.be/)[^/\s]+\z}
     niconico_regex = %r{\Ahttps?://(www\.nicovideo\.jp/watch/|embed\.nicovideo\.jp/watch/)[^/\s]+\z}
-  
+    
     unless embed_url =~ youtube_regex || embed_url =~ niconico_regex
       errors.add(:embed_url, "のフォーマットが正しくありません(動画再生画面のURLを入力して下さい)")
-    end
-  end
-
-  def convert_to_embed_url
-    if embed_url =~ %r{\Ahttps?://www\.youtube\.com/watch\?v=([^&]+)}
-      self.embed_url = "https://www.youtube.com/embed/#{$1}"
-    elsif embed_url =~ %r{\Ahttps?://www\.nicovideo\.jp/watch/([^/?]+)}
-      self.embed_url = "https://embed.nicovideo.jp/watch/#{$1}"
     end
   end
 
@@ -66,18 +62,10 @@ class Song < ApplicationRecord
   end
 
   def validate_video
-    video_info = get_video_info
+    video_info = VideoInfoFetcher.get_video_info(embed_url)
     return if video_info && video_uses_synthesized_music?(video_info)
 
     errors.add(:embed_url, "に入力した楽曲は音声合成ソフトウェアを使用している必要があります。動画のタイトル、概要欄、タグ等に音声合成ソフト関連のワードが含まれているか確認して下さい。")
-  end
-
-  def get_video_info
-    if embed_url.include?("youtube.com")
-      YoutubeService.get_video_info(embed_url)
-    elsif embed_url.include?("nicovideo.jp")
-      NiconicoService.get_video_info(embed_url)
-    end
   end
 
   def video_uses_synthesized_music?(video_info)
