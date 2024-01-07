@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :focus_point do
-    name { "メロディ" }
+    name { 'メロディー' }
   end
 end
