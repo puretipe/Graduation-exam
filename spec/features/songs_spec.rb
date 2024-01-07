@@ -2,15 +2,15 @@ require 'rails_helper'
 
 RSpec.describe '楽曲の投稿機能', type: :feature do
   let(:user) { create(:user) }
-  let(:focus_point) { create(:focus_point) }
+  let!(:focus_point) { create(:focus_point, name: 'メロディー') }
 
   before do
-    focus_point
-    visit login_path
+    visit new_user_session_path
     fill_in 'Email', with: user.email
     fill_in 'Password', with: 'password'
     click_button 'ログイン'
     visit new_song_path
+    expect(page).to have_selector('select#focus_point_id')
   end
 
   describe '新規楽曲の投稿' do
@@ -21,7 +21,7 @@ RSpec.describe '楽曲の投稿機能', type: :feature do
         fill_in 'アーティスト', with: 'テストアーティスト'
         fill_in '楽曲に使用した音声合成ソフト名', with: 'Vocaloid'
         fill_in 'ジャンル', with: 'ポップ'
-        select 'メロディ', from: 'focus_point_id'
+        select 'メロディー', from: 'focus_point_id'
         fill_in '楽曲概要', with: 'これはテスト楽曲です。'
         click_button '投稿する'
 
@@ -33,13 +33,16 @@ RSpec.describe '楽曲の投稿機能', type: :feature do
 
     context '無効な入力でエラーを表示する' do
       it 'エラーメッセージが表示される' do
-        fill_in 'タイトル', with: ''
-        fill_in 'アーティスト', with: ''
-        fill_in '動画URL(YouTubeもしくはニコニコ動画)', with: ''
         click_button '投稿する'
-
         expect(page).to have_css('#error_explanation')
-        expect(page).to have_current_path(new_song_path)
+        expect(page).to have_content('ジャンルを入力してください')
+        expect(page).to have_content('こだわりポイントを入力してください')
+        expect(page).to have_content('動画URLに入力した楽曲は音声合成ソフトウェアを使用している必要があります。動画のタイトル、概要欄、タグ等に音声合成ソフト関連のワードが含まれているか確認して下さい。')
+        expect(page).to have_content('タイトルを入力してください')
+        expect(page).to have_content('アーティストを入力してください')
+        expect(page).to have_content('動画URLを入力してください')
+        expect(page).to have_content('使用したソフト名を入力してください')
+        expect(page).to have_current_path(songs_path)
       end
     end
   end
