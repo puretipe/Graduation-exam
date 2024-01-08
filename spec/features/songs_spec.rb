@@ -10,6 +10,7 @@ RSpec.describe '楽曲の投稿機能', type: :feature do
     fill_in 'Password', with: 'password'
     click_button 'ログイン'
     visit new_song_path
+    save_screenshot('tmp/screenshots/screenshot.png')
     expect(page).to have_selector('select#focus_point_id')
   end
 
