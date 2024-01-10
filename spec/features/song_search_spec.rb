@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe '楽曲の検索機能', type: :feature do
   let(:user) { create(:user) }
+  let!(:song) { create(:song, title: '期待される楽曲名') }
 
   before do
     visit new_user_session_path
@@ -14,7 +15,7 @@ RSpec.describe '楽曲の検索機能', type: :feature do
     context '有効な検索クエリを使用する' do
       it '期待される楽曲が表示される' do
         visit songs_path
-        fill_in 'search-field-id', with: '検索クエリ'
+        fill_in 'search-field-id', with: '期待される楽曲名'
         click_button '検索'
         expect(page).to have_content('期待される楽曲名')
       end
