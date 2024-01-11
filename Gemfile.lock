@@ -423,7 +423,6 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   kaminari
-  launchy
   letter_opener_web
   mysql2 (~> 0.5)
   puma (>= 5.0)
@@ -433,7 +432,7 @@ DEPENDENCIES
   rails_12factor
   ransack
   rexml
-  rspec-rails (~> 5.0.0)
+  rspec-rails
   sass-rails
   selenium-webdriver
   sorcery

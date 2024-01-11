@@ -62,7 +62,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
-  gem 'rspec-rails', '~> 5.0.0'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -83,7 +83,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem 'webdrivers'
-  gem "launchy"
 end
 
 group :production do
