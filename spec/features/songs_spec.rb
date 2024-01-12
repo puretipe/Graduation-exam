@@ -10,6 +10,7 @@ RSpec.describe '楽曲の投稿機能', type: :feature do
     fill_in 'Password', with: 'password'
     click_button 'ログイン'
     visit new_song_path
+    expect(page).to have_content('メロディー')
     expect(page).to have_selector('select#focus_point_id')
   end
 
@@ -29,6 +30,20 @@ RSpec.describe '楽曲の投稿機能', type: :feature do
         expect(page).to have_current_path(songs_path)
         expect(Song.last.title).to eq('テスト楽曲')
       end
+    end
+
+    it 'focus_pointsが存在する' do
+      expect(FocusPoint.count).to be > 0
+    end
+    
+    it 'こだわりポイントのドロップダウンが表示されている' do
+      visit new_song_path
+      expect(page).to have_selector('select#focus_point_id')
+    end
+    
+    it 'こだわりポイントのドロップダウンに「メロディー」が含まれる' do
+      visit new_song_path
+      expect(page).to have_selector('select#focus_point_id option', text: 'メロディー')
     end
 
     context '無効な入力でエラーを表示する' do
