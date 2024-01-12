@@ -78,4 +78,17 @@ RSpec.configure do |config|
       Capybara.ignore_hidden_elements = false
     end
   end
+
+  config.after(:each, type: :feature) do |example|
+    if example.exception
+      meta = example.metadata
+      filename = File.basename(meta[:file_path])
+      line_number = meta[:line_number]
+      screenshot_name = "screenshot-#{filename}-#{line_number}.png"
+      screenshot_path = "#{Rails.root.join('tmp/capybara')}/#{screenshot_name}"
+
+      save_screenshot(screenshot_path)
+      puts "\n  Screenshot: #{screenshot_path}"
+    end
+  end
 end
