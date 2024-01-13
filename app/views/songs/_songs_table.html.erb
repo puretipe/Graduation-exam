@@ -14,7 +14,7 @@
       <tr>
         <td><%= link_to (image_tag(song.thumbnail_url, width: 150, height: 100) if song.thumbnail_url.present?), song_path(song) %></td>
         <td><%= link_to song.title, song_path(song) %></td>
-        <td><%= song.artist %></td>
+        <td><%= link_to song.artist, artist_path(song.user) %></td>
         <td><%= song.software_name %></td>
         <td><%= song.genre&.name %></td>
         <td><%= song.focus_point&.name %></td>

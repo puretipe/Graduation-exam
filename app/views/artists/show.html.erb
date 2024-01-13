@@ -1,0 +1,22 @@
+<div class="container mt-4 text-center">
+  <h1 class="mb-4"><%= @artist.name %> のプロフィール</h1>
+
+  <div class="row justify-content-center">
+    <div class="col-12 mb-3">
+      <% if @artist.profile.profile_image_url.present? %>
+        <img src="<%= @artist.profile.profile_image_url %>" alt="Profile Image" class="img-fluid rounded-circle" style="max-width: 200px; height: 200px; object-fit: cover;">
+      <% else %>
+        <p>プロフィール画像は設定されていません</p>
+      <% end %>
+    </div>
+
+    <div class="col-12">
+      <div class="mb-3">
+        <strong>ユーザー名:</strong>
+        <p><%= @artist.name %></p>
+      </div>
+
+      <%= link_to '投稿した楽曲一覧', songs_artist_path(@artist), class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>
