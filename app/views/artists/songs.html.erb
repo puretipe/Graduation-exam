@@ -1,0 +1,9 @@
+<div class="container mt-4">
+  <h1><%= @artist.name %> が投稿した楽曲一覧</h1>
+
+  <div class="text-center">
+    <%= render 'songs/search_form', q: @q, search_url: songs_path %>
+  </div>
+
+  <%= render 'songs/songs_table', songs: @songs %>
+</div>

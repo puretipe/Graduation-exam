@@ -20,6 +20,8 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
   validates :reset_password_token, uniqueness: true, allow_nil: true
 
+  enum role: { general: 0, artist: 1 }
+
   private
 
   def create_user_profile

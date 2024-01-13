@@ -20,7 +20,7 @@
             <%= render "evaluation_buttons", locals: { song: @song, current_evaluation: @evaluation } %>
           </div>
 
-          <p class="card-text"><strong>アーティスト名:</strong> <%= @song.artist %></p>
+          <p class="card-text"><strong>アーティスト名:</strong> <%= link_to @song.artist, artist_path(@song.user) %></p>
           <p class="card-text"><strong>使用したソフト名:</strong> <%= @song.software_name %></p>
           <p class="card-text"><strong>ジャンル:</strong> <%= @song.genre.name %></p>
           <p class="card-text"><strong>こだわりポイント:</strong> <%= @song.focus_point.name %></p>
