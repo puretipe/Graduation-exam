@@ -1,0 +1,20 @@
+<div class="container">
+  <h1>フォローしているアーティスト</h1>
+  <% if @artists.empty? %>
+    <p>フォローしているアーティストはいません。</p>
+  <% else %>
+    <ul class="list-unstyled">
+      <% @artists.each do |artist| %>
+        <li class="mb-3">
+          <%= link_to artist_path(artist), class: "d-flex align-items-center text-decoration-none" do %>
+            <% if artist.profile&.profile_image_url&.url.present? %>
+              <%= image_tag artist.profile.profile_image_url.url, alt: "アイコン", style: "width: 100px; height: 100px; border-radius: 50%; margin-right: 15px;" %>
+            <% end %>
+            <span class="btn btn-primary"><%= artist.name %></span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+    <%= paginate @artists %>
+  <% end %>
+</div>

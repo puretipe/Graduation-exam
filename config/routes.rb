@@ -14,7 +14,11 @@ Rails.application.routes.draw do
 
   root 'home#index'
   
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create] do
+    member do
+      get :following_artists
+    end
+  end
   resource :user_session, only: [:new, :create, :destroy]
   resources :songs do
     resources :evaluations, only: [:create, :update, :destroy]
