@@ -11,6 +11,10 @@ class User < ApplicationRecord
   has_many :favorites
   has_many :favorited_songs, through: :favorites, source: :song
   has_many :comments, dependent: :destroy
+  has_many :following_relationships, foreign_key: :follower_id, class_name: 'Follow'
+  has_many :following, through: :following_relationships, source: :followed
+  has_many :follower_relationships, foreign_key: :followed_id, class_name: 'Follow'
+  has_many :followers, through: :follower_relationships, source: :follower
   after_create :create_user_profile
 
   validates :name, presence: true, length: { maximum: 255 }

@@ -10,6 +10,14 @@
       <% end %>
     </div>
 
+    <div class="d-flex justify-content-end mb-3">
+      <% if current_user && current_user.following.include?(@artist) %>
+        <%= render 'artists/unfollow_button', artist: @artist %>
+      <% else %>
+        <%= render 'artists/follow_button', artist: @artist %>
+      <% end %>
+    </div>
+
     <div class="col-12">
       <div class="mb-3">
         <strong>ユーザー名:</strong>

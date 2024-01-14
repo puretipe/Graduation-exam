@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "follow-button-#{ @artist.id }" do %>
+  <%= render 'artists/follow_button', artist: @artist %>
+<% end %>

@@ -1,11 +1,20 @@
 class ArtistsController < ApplicationController
-  before_action :set_artist, only: [:show, :songs]
+  before_action :set_artist, only: [:show, :songs, :follow, :unfollow]
+  before_action :require_login, only: [:follow, :unfollow]
 
   def show
   end
 
   def songs
     load_songs(@artist.songs)
+  end
+
+  def follow
+    current_user.following_relationships.create(followed_id: @artist.id)
+  end
+
+  def unfollow
+    current_user.following_relationships.find_by(followed_id: @artist.id).destroy
   end
 
   private

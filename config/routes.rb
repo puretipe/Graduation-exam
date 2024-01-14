@@ -29,6 +29,10 @@ Rails.application.routes.draw do
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :artists, only: [:show] do
     get 'songs', on: :member
+    member do
+      post 'follow', to: 'artists#follow'
+      delete 'unfollow', to: 'artists#unfollow'
+    end
   end
 
   get 'autocompletes/songs', to: 'autocompletes#autocomplete'
