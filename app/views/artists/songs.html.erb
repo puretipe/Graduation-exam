@@ -2,8 +2,16 @@
   <h1><%= @artist.name %> が投稿した楽曲一覧</h1>
 
   <div class="text-center">
-    <%= render 'songs/search_form', q: @q, search_url: songs_path %>
+    <%= render 'songs/search_form', q: @q, search_url: songs_artist_path %>
   </div>
 
   <%= render 'songs/songs_table', songs: @songs %>
+
+  <% if @songs.empty? %>
+    <p class="text-center">投稿された楽曲はありません。</p>
+  <% else %>
+    <div class="pagination justify-content-center">
+      <%= paginate @songs, theme: 'bootstrap-5' %>
+    </div>
+  <% end %>
 </div>
