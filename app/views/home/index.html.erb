@@ -9,6 +9,8 @@
 
   <div class="buttons text-center">
     <%= link_to "楽曲を探す", songs_path, class: "btn btn-light m-2" %>
-    <%= link_to "楽曲を投稿する", new_song_path, class: "btn btn-light m-2" %>
+    <% if current_user && current_user.artist? %>
+      <%= link_to "楽曲を投稿する", new_song_path, class: "btn btn-light m-2" %>
+    <% end %>
   </div>
 </div>
