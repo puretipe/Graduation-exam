@@ -14,6 +14,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def following_artists
+    @user = User.find(params[:id])
+    @artists = @user.following.where(role: :artist).page(params[:page])
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)

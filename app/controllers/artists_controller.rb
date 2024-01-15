@@ -11,10 +11,20 @@ class ArtistsController < ApplicationController
 
   def follow
     current_user.following_relationships.create(followed_id: @artist.id)
+
+    respond_to do |format|
+      format.html { redirect_to artist_path(@artist) }
+      format.turbo_stream
+    end
   end
 
   def unfollow
     current_user.following_relationships.find_by(followed_id: @artist.id).destroy
+
+    respond_to do |format|
+      format.html { redirect_to artist_path(@artist) }
+      format.turbo_stream
+    end
   end
 
   private

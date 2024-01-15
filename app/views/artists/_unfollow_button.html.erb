@@ -1,1 +1,1 @@
-<%= button_to 'アンフォロー', unfollow_artist_path(artist), id: "follow-button-#{artist.id}", data: { turbo_method: :delete }, class: "btn btn-danger" %>
+<%= button_to 'フォローを解除する', unfollow_artist_path(artist), id: "unfollow-button-#{artist.id}", method: :delete, class: "btn btn-danger" %>
