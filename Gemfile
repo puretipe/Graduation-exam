@@ -43,6 +43,7 @@ gem 'dartsass-rails'
 gem 'sass-rails'
 gem 'jsbundling-rails'
 gem 'rexml'
+gem 'meta-tags'
 #gem "rails_admin"  
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
