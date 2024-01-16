@@ -21,8 +21,15 @@
         <p><%= current_user.email %></p>
       </div>
 
+      <div class="mb-3">
+        <strong>アカウントタイプ:</strong>
+        <p><%= t("activerecord.attributes.user.roles.#{current_user.role}") %></p>
+      </div>
+
+      <% if current_user.artist? %>
+        <%= link_to '投稿した楽曲', my_songs_songs_path, class: "btn btn-secondary" %>
+      <% end %>
       <%= link_to 'プロフィール編集', edit_profile_path(@profile), class: "btn btn-primary" %>
-      <%= link_to '投稿した楽曲一覧・編集', my_songs_songs_path, class: "btn btn-secondary" %>
       <%= link_to 'お気に入り楽曲', favorites_songs_path, class: "btn btn-secondary" %>
       <%= link_to 'フォロー中のアーティスト', following_artists_user_path(current_user), class: "btn btn-secondary" %>
     </div>

@@ -1,6 +1,14 @@
 ja:
   activerecord:
     attributes:
+      user:
+        role: "アカウントタイプ"
+        roles:
+          general: "リスナー"
+          artist: "アーティスト"
+    roles:
+      general: "リスナー"
+      artist: "アーティスト"
       evaluation:
         evaluation_points:
           melody: 'メロディー'

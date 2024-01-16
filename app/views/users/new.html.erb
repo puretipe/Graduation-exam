@@ -24,6 +24,14 @@
             <%= f.password_field :password_confirmation, class: "form-control", required: true %>
           </div>
 
+          <div class="mb-3">
+            <%= f.label :role, User.human_attribute_name(:role), class: "form-label" %>
+            <%= f.select :role, 
+                 User.roles.keys.map { |role| [t("activerecord.roles.#{role}"), role] },
+                { include_blank: '選択してください' },
+                { class: "form-control" } %>
+          </div>
+
           <%= f.submit "登録", class: "btn btn-primary" %>
         <% end %>
    </div>

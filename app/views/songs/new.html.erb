@@ -37,7 +37,7 @@
 
         <div class="mb-3">
           <%= f.label :artist, "アーティスト", class: 'form-label' %>
-          <%= f.text_field :artist, class: 'form-control' %>
+          <%= f.text_field :artist, class: 'form-control', value: current_user.name %>
         </div>
 
         <div class="mb-3">
