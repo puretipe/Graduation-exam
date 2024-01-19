@@ -13,8 +13,8 @@ class ArtistsController < ApplicationController
     current_user.following_relationships.create(followed_id: @artist.id)
 
     respond_to do |format|
-      format.html { redirect_to artist_path(@artist) }
       format.turbo_stream
+      format.html { redirect_to artist_path(@artist) }
     end
   end
 
