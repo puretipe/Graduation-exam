@@ -10,7 +10,7 @@
   <% if @songs.empty? %>
     <p class="text-center">投稿された楽曲はありません。</p>
   <% else %>
-    <div class="pagination justify-content-center">
+    <div class="pagination">
       <%= paginate @songs, theme: 'bootstrap-5' %>
     </div>
   <% end %>
