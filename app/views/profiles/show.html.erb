@@ -27,11 +27,11 @@
       </div>
 
       <% if current_user.artist? %>
-        <%= link_to '投稿した楽曲', my_songs_songs_path, class: "btn btn-secondary" %>
+        <%= link_to '投稿した楽曲', my_songs_songs_path, class: "btn btn-info" %>
       <% end %>
-      <%= link_to 'プロフィール編集', edit_profile_path(@profile), class: "btn btn-primary" %>
-      <%= link_to 'お気に入り楽曲', favorites_songs_path, class: "btn btn-secondary" %>
-      <%= link_to 'フォロー中のアーティスト', following_artists_user_path(current_user), class: "btn btn-secondary" %>
+      <%= link_to 'プロフィール編集', edit_profile_path(@profile), class: "btn btn-warning" %>
+      <%= link_to 'お気に入り楽曲', favorites_songs_path, class: "btn btn-success" %>
+      <%= link_to 'フォロー中のアーティスト', following_artists_user_path(current_user), class: "btn btn-primary" %>
     </div>
   </div>
 </div>

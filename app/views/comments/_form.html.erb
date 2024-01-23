@@ -2,6 +2,6 @@
   <%= form_with model: comment, url: song_comments_path(song) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <%= f.text_area :content, rows: 3, class: 'form-control', placeholder: 'コメントを入力' %>
-    <%= f.submit '投稿する', class: 'btn btn-primary' %>
+    <%= f.submit '投稿する', class: 'btn btn-info' %>
   <% end %>
 </div>

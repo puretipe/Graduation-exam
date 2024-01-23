@@ -45,7 +45,7 @@
           <p class="card-text"><strong>楽曲の概要:</strong> <%= @song.description %></p>
 
           <% if current_user == @song.user %>
-            <%= link_to '編集', edit_song_path(@song), class: 'btn btn-primary' %>
+            <%= link_to '編集', edit_song_path(@song), class: 'btn btn-info' %>
           <% end %>
 
           <h3>コメントする</h3>
