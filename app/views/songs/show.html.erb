@@ -33,11 +33,6 @@
 
           <p class="card-text">
             <strong>アーティスト名:</strong> <%= link_to @song.user.name, artist_path(@song.user) %>
-            <% if current_user && current_user.following.include?(@song.user) %>
-              <%= render 'artists/unfollow_button', artist: @song.user %>
-            <% else %>
-              <%= render 'artists/follow_button', artist: @song.user %>
-            <% end %>
           </p>
           <p class="card-text"><strong>使用したソフト名:</strong> <%= @song.software_name %></p>
           <p class="card-text"><strong>ジャンル:</strong> <%= @song.genre.name %></p>
