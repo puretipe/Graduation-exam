@@ -17,8 +17,8 @@ class Song < ApplicationRecord
   validates :embed_url, presence: true, length: { maximum: 255 }, uniqueness: true
   validates :software_name, presence: true, length: { maximum: 255 }
 
-  SYNTHESIZER_KEYWORDS = ["初音ミク", "VOCALOID", "可不", "CeVIO", "Synthesizer", "UTAU", "VOICEBOX", "flower", "巡音ルカ", "鏡音",
-                          "ボーカロイド", "ずんだもん", "重音テト"]
+  SYNTHESIZER_KEYWORDS = ["初音ミク", "VOCALOID", "可不", "CeVIO", "Synthesizer", "UTAU", "VOICEBOX", "flower", "巡音ルカ", "ピコ","鏡音","猫村いろは",
+                          "ボーカロイド", "ずんだもん", "重音テト", "GUMI", "きりたん", "音街ウナ", "蒼姫ラピス", "紲星あかり", "ギャラ子", "東北ずん子", "IA", "VY", "MAYU", "VY", "MEIKO", "KAITO", "Fukase"]
 
   def self.ransackable_attributes(auth_object = nil)
     %w[title artist software_name genre_id]
