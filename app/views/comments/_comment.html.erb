@@ -3,7 +3,13 @@
     <p class="card-text"><%= comment.content %></p>
     <p class="card-text">
       <small class="text-muted">
-        投稿者: <%= comment.user.name %> | <%= time_ago_in_words(comment.created_at) %>前
+        投稿者: 
+              <% if comment.user.profile&.profile_image_url.present? %>
+                <img src="<%= comment.user.profile.profile_image_url %>" alt="Profile Image" class="rounded-circle" style="width: 30px; height: 30px; object-fit: cover; margin-right: 10px;">
+              <% else %>
+                <span class="rounded-circle" style="width: 30px; height: 30px; background-color: #e9ecef; margin-right: 10px;"></span>
+              <% end %>
+              <%= comment.user.name %> | <%= time_ago_in_words(comment.created_at) %>前
       </small>
     </p>
     <% if current_user == comment.user %>
