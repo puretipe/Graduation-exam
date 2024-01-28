@@ -31,8 +31,14 @@
             <%= render "evaluation_buttons", locals: { song: @song, current_evaluation: @evaluation } %>
           </div>
 
-          <p class="card-text">
-            <strong>アーティスト名:</strong> <%= link_to @song.user.name, artist_path(@song.user) %>
+          <p class="card-text d-flex align-items-center">
+            <strong>アーティスト名:</strong> 
+            <% if @song.user.profile&.profile_image_url.present? %>
+              <img src="<%= @song.user.profile.profile_image_url %>" alt="Profile Image" class="rounded-circle" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px;">
+            <% else %>
+              <span class="rounded-circle" style="width: 50px; height: 50px; background-color: #e9ecef; margin-right: 10px;"></span>
+            <% end %>
+            <%= link_to @song.user.name, artist_path(@song.user) %>
           </p>
           <p class="card-text"><strong>使用したソフト名:</strong> <%= @song.software_name %></p>
           <p class="card-text"><strong>ジャンル:</strong> <%= @song.genre.name %></p>

@@ -1,6 +1,13 @@
 ja:
   activerecord:
     attributes:
+      song:
+        genre: "ジャンル"
+        focus_point: "こだわりポイント"
+        title: "タイトル"
+        artist: "アーティスト"
+        embed_url: "動画URL"
+        software_name: "使用したソフト名"
       user:
         role: "アカウントタイプ"
         roles:
@@ -22,13 +29,6 @@ ja:
         password_confirmation: "確認用パスワード"
         name: "名前"
         email: "メールアドレス"
-      song:
-        genre: "ジャンル"
-        focus_point: "こだわりポイント"
-        title: "タイトル"
-        artist: "アーティスト"
-        embed_url: "動画URL"
-        software_name: "使用したソフト名"
     errors:
       messages:
         too_short: "%{count}文字以上で入力してください"
