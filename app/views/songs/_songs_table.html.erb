@@ -13,12 +13,16 @@
     <% songs.each do |song| %>
       <tr>
         <td><%= link_to (image_tag(song.thumbnail_url, width: 150, height: 100) if song.thumbnail_url.present?), song_path(song) %></td>
-        <td><%= link_to song.title, song_path(song) %></td>
         <td>
-          <% if song.user.profile&.profile_image_url.present? %>
-            <img src="<%= song.user.profile.profile_image_url %>" alt="Profile Image" class="rounded-circle" style="width: 30px; height: 30px; object-fit: cover; margin-right: 10px;">
-          <% end %>
-          <%= link_to song.artist, artist_path(song.user) %>
+          <div class="fw-bold"><%= link_to song.title, song_path(song) %></div>
+        </td>
+        <td>
+          <div class="d-flex align-items-center">
+            <% if song.user.profile&.profile_image_url.present? %>
+              <img src="<%= song.user.profile.profile_image_url %>" alt="Profile Image" class="rounded-circle me-2" style="width: 30px; height: 30px; object-fit: cover;">
+            <% end %>
+            <div><%= link_to song.artist, artist_path(song.user) %></div>
+          </div>
         </td>
         <td><%= song.software_name %></td>
         <td><%= song.genre&.name %></td>
