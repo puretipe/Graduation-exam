@@ -3,7 +3,7 @@ class Song < ApplicationRecord
   belongs_to :genre
   belongs_to :focus_point
   has_many :evaluations, dependent: :destroy
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
   has_many :favorited_by, through: :favorites, source: :user
   has_many :comments, dependent: :destroy
   attr_accessor :genre_name
