@@ -1,6 +1,6 @@
 <div id="comment-<%= comment.id %>" class="card mb-3">
   <div class="card-body">
-    <p class="card-text"><%= comment.content %></p>
+    <%= simple_format(comment.content, {}, wrapper_tag: "p", class: "card-text") %>
     <p class="card-text">
       <small class="text-muted">
         投稿者: 
