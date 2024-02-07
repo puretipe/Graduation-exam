@@ -3,9 +3,13 @@
     <%= render 'songs/search_form', q: @q, search_url: favorites_songs_path %>
   </div>
 
-  <%= render 'songs/songs_table', songs: @songs %>
+  <% if @songs.present? %>
+    <%= render 'songs/songs_table', songs: @songs %>
 
-  <div class="pagination">
-    <%= paginate @songs, theme: 'bootstrap-5' %>
-  </div>
+    <div class="pagination">
+      <%= paginate @songs, theme: 'bootstrap-5' %>
+    </div>
+  <% else %>
+    <p>お気に入り登録した楽曲はありません。</p>
+  <% end %>
 </div>
