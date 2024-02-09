@@ -1,6 +1,17 @@
 ja:
   activerecord:
     attributes:
+      user:
+        name: "ユーザー名"
+        email: "メールアドレス"
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              blank: "を入力してください"
+            email:
+              blank: "を入力してください"
       song:
         genre: "ジャンル"
         focus_point: "こだわりポイント"
