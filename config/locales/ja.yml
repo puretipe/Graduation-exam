@@ -1,17 +1,6 @@
 ja:
   activerecord:
     attributes:
-      user:
-        name: "ユーザー名"
-        email: "メールアドレス"
-    errors:
-      models:
-        user:
-          attributes:
-            name:
-              blank: "を入力してください"
-            email:
-              blank: "を入力してください"
       song:
         genre: "ジャンル"
         focus_point: "こだわりポイント"
@@ -24,6 +13,10 @@ ja:
         roles:
           general: "リスナー"
           artist: "アーティスト"
+        name: "ユーザー名"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
     roles:
       general: "リスナー"
       artist: "アーティスト"
@@ -36,13 +29,11 @@ ja:
           sound: 'サウンド'
           atmosphere: '雰囲気'
       user:
-        password: "パスワード"
-        password_confirmation: "確認用パスワード"
         name: "名前"
         email: "メールアドレス"
     errors:
       messages:
-        too_short: "%{count}文字以上で入力してください"
+        too_short: "は%{count}文字以上で入力してください"
         confirmation: "と%{attribute}の入力が一致しません"
   evaluation_points:
     melody: "メロディ"
