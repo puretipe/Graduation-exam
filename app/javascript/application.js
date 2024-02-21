@@ -8,9 +8,8 @@ Rails.start();
 document.addEventListener('turbo:load', () => {
   $('#search-field-id').autocomplete({
     source: '/autocompletes/songs',
-    minLength: 2,
+    minLength: 1,
     select: function(event, ui) {
-      // オプション: 選択された項目に基づくアクション
       console.log("Selected: " + ui.item.label);
     }
   });
