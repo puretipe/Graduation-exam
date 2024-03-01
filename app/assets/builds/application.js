@@ -10328,7 +10328,7 @@
   document.addEventListener("turbo:load", () => {
     $("#search-field-id").autocomplete({
       source: "/autocompletes/songs",
-      minLength: 2,
+      minLength: 1,
       select: function(event, ui) {
         console.log("Selected: " + ui.item.label);
       }
