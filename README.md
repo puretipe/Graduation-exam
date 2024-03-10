@@ -77,6 +77,17 @@ MVPリリースまで
 - サービスの利用規約
 - プライバシーポリシー
 
+# 使用技術
+| カテゴリ | 技術                |
+|--------------|---------------------|
+| フロントエンド        | JavaScript　/　JQeary |
+| バックエンド      | Ruby 3.2.2　/　Ruby　on　Rails　7.1.1 |
+| データベース      | MySQL　　|
+| 認証      | sorcery |
+| 環境構築      | Docker |
+| インフラ      | Heroku |
+| Web API      | YouTube　Data　API　v3　/　ニコニコ動画　API |
+
 # 画面遷移図
 https://www.figma.com/file/KaajbfyHGnlFXnf8AMK7iA/%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA?type=whiteboard&node-id=0-1&t=E3O5RUWSOmM90zOG-0
 
